@@ -124,7 +124,7 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 | `training_dataset/` | 公开训练数据、AF/Stress 模型参数、验证报告和数据集说明。 |
 | `PCB板文件(epro2文件)/` | 主板和锂电池供电板 PCB 工程文件。 |
 | `tools/` | 外部工具占位说明；OpenOCD、TeX 等工具本体不提交，按 `tools/README.md` 重新下载。 |
-| `output/pdf/` | 验收说明、汇报文档等 LaTeX 源文件；生成的 PDF/aux 不提交。 |
+| `output/` | 本地生成的报告/PDF 输出目录，不随 GitHub 提交。 |
 | `build/Debug/` | CMake Debug 本地构建产物目录，不随 Git 提交；clone 后需要重新构建生成 `STM32_F411_Test.elf`。 |
 | `cmake/`、`CMakeLists.txt`、`CMakePresets.json` | CMake 构建配置。 |
 
@@ -143,7 +143,7 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 | 串口采集和实时诊断 | Python 3、`pyserial` | 使用 `python -m pip install pyserial` 安装后运行 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py`。 |
 | 重新训练 AF 模型或刷新公开 AF 数据 | 可选下载 PhysioNet AF/NSR 注释文件 | 当前提交已保留 `training_dataset/physionet/` 最小注释文件；缺失或想刷新时运行 `scripts/download_af_training_data.py`。 |
 | 重新训练 Stress 模型 | WESAD、`numpy`、`scipy`、`scikit-learn` | `training_dataset/wesad/` 体积较大，不提交。只有重新训练压力模型时才需要下载。 |
-| 重新生成 PDF 报告 | TeX/Tectonic 工具链 | `output/pdf/` 保留 `.tex` 源文件，生成的 PDF/aux 不提交。 |
+| 重新生成 PDF 报告 | TeX/Tectonic 工具链 | `output/` 是本地输出目录，不在 GitHub 展示；需要 PDF 时在本机重新生成。 |
 
 更详细的数据集和脚本说明分别见 `training_dataset/公开训练集说明.md`、`testing dataset/本地采集数据集说明.md` 和 `scripts/脚本使用说明.md`。
 
@@ -186,7 +186,7 @@ OpenOCD 烧录命令可参考：
 | `build/` | CMake 构建产物 | 运行 `cmake --preset Debug` 和 `cmake --build --preset Debug`。 |
 | `tools/xpack-openocd-0.12.0-7/` | 外部调试工具，平台相关且体积较大 | 下载 xPack OpenOCD，放到该路径，或改用本机 OpenOCD 路径。 |
 | `tools/tex/` | LaTeX/PDF 工具链 | 只有重新生成报告 PDF 时需要，也可使用系统 PATH 中已有的 TeX/Tectonic。 |
-| `output/pdf/*.pdf`、`output/pdf/*.aux` | 可由 LaTeX 源文件重新生成 | 保留 `.tex` 源文件，PDF 本地生成。 |
+| `output/` | 本地报告/PDF 输出目录 | 不在 GitHub 展示；需要时在本机生成。 |
 | `training_dataset/wesad/` | WESAD 约 2.5 GB | 运行 `python scripts/download_stress_training_data.py`，只在重新训练压力模型时需要。 |
 | `training_dataset/derived/` | 训练派生窗口，可重新生成 | 运行对应训练脚本重新生成。 |
 | `training_dataset/reports/` 下的历史候选报告 | 中间实验产物较多 | 当前只保留 `*_current` 定稿报告；需要新实验时用脚本重新生成候选目录。 |

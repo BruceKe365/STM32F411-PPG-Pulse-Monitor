@@ -14,9 +14,8 @@ __pycache__/
 .claude/
 .codex/
 
-# Generated report binaries; keep Markdown/LaTeX sources in git
-output/pdf/*.aux
-output/pdf/*.pdf
+# Local generated report outputs
+output/
 
 # Keep STM32/CubeIDE project settings that help reproduction
 !.settings/
