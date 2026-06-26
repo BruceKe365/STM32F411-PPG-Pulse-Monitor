@@ -1,0 +1,41 @@
+# Build and IDE scratch files
+build/
+mx.scratch/
+tmp/
+debug.log
+*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Agent/local assistant metadata
+.agents/
+.claude/
+.codex/
+
+# Generated report binaries; keep Markdown/LaTeX sources in git
+output/pdf/*.aux
+output/pdf/*.pdf
+
+# Keep STM32/CubeIDE project settings that help reproduction
+!.settings/
+
+# Downloaded external tools; install/download locally when needed
+tools/tex/
+tools/xpack-openocd-0.12.0-7/
+tools/xpack-openocd-0.12.0-7-win32-x64.zip
+tools/__pycache__/
+
+# Large public/raw/generated datasets that should not be committed directly
+training_dataset/wesad/
+training_dataset/derived/
+
+# Historical/generated validation reports. Keep only final current reports.
+training_dataset/reports/*
+!training_dataset/reports/full_af_validation_20260617_current/
+!training_dataset/reports/full_af_validation_20260617_current/**
+!training_dataset/reports/full_stress_live_validation_20260617_current/
+!training_dataset/reports/full_stress_live_validation_20260617_current/**
+!training_dataset/reports/full_stress_train_validation_20260617_current/
+!training_dataset/reports/full_stress_train_validation_20260617_current/**

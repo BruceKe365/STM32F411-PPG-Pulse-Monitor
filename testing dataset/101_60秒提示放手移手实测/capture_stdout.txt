@@ -1,0 +1,6 @@
+Opening COM7 at 115200 baud. Ctrl+C to stop.
+Session raw, label=live_60s_prompted_on_off_hr10_spo220
+Saving raw samples to testing dataset\101_live_60s_prompted_on_off\raw.csv
+Saving processed samples to testing dataset\101_live_60s_prompted_on_off\raw_processed.csv
+Saving event markers to testing dataset\101_live_60s_prompted_on_off\raw_events.csv
+samples= 193269 fs=--Hz red=   317 ir=   260 finger=no  score=-- hr=-- auto=-- spo2=-- ratio=--

@@ -1,0 +1,15 @@
+{
+  "width": 128,
+  "height": 32,
+  "flow": "new waveform columns enter at x=0 and move right until disappearing",
+  "source": "real beat peaks from the existing PPG estimator; display height is bounded-normalized",
+  "waveform_style": "bounded",
+  "starts_after": "finger_present and first HR confirmed",
+  "stops_after": "finger_present clears or HR is no longer confirmed",
+  "column_period_samples": 3,
+  "frame_ms": 100,
+  "scale": 4,
+  "frames_written": 219,
+  "waveform_start_count": 1,
+  "waveform_drain_count": 1
+}

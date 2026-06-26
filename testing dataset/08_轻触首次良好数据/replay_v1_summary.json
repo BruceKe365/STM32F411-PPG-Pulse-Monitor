@@ -1,0 +1,184 @@
+{
+  "session_id": "ppg_finger_light_07_replay_v1",
+  "label": "finger_light_replay",
+  "notes": "replay validation of light placement capture",
+  "port": null,
+  "baud": 115200,
+  "elapsed_s": 18.194,
+  "samples": 5998,
+  "raw_csv": "ppg_finger_light_07_replay_v1.csv",
+  "processed_csv": "ppg_finger_light_07_replay_v1_processed.csv",
+  "event_csv": "ppg_finger_light_07_replay_v1_events.csv",
+  "events": [
+    {
+      "event_s": 0.0,
+      "event_label": "finger_light_on"
+    }
+  ],
+  "parameters": {
+    "window_s": 10.0,
+    "finger_ir_min": 10000.0,
+    "min_ac_rms": 10.0,
+    "min_peak_ms": 550.0,
+    "max_peak_ms": 1500.0,
+    "dc_alpha": 0.02,
+    "filt_alpha": 0.2,
+    "warmup_s": 20.0
+  },
+  "first_sample": {
+    "t_ms": 3009150,
+    "red": 56006,
+    "ir": 61316,
+    "irq_count": 269849,
+    "sample_count": 300920
+  },
+  "last_sample": {
+    "t_ms": 3069118,
+    "red": 55892,
+    "ir": 63648,
+    "irq_count": 275207,
+    "sample_count": 306917
+  },
+  "data_quality": {
+    "time_gap_ms": {
+      "count": 5997,
+      "min": -33.0,
+      "max": 55.0,
+      "mean": 10.0,
+      "std": 5.953
+    },
+    "sample_count_gap": {
+      "count": 5997,
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "nonmonotonic_t_ms": 60,
+    "nonmonotonic_sample_count": 0,
+    "missing_sample_count": 0
+  },
+  "raw_stats": {
+    "red": {
+      "count": 5998,
+      "min": 54951.0,
+      "max": 57405.0,
+      "mean": 55971.212,
+      "std": 612.242
+    },
+    "ir": {
+      "count": 5998,
+      "min": 60429.0,
+      "max": 65041.0,
+      "mean": 62820.767,
+      "std": 835.929
+    }
+  },
+  "processed_stats": {
+    "fs_hz": {
+      "count": 5979,
+      "min": 100.0,
+      "max": 100.0,
+      "mean": 100.0,
+      "std": 0.0
+    },
+    "red_dc": {
+      "count": 5998,
+      "min": 55282.316,
+      "max": 57213.826,
+      "mean": 55970.271,
+      "std": 584.318
+    },
+    "ir_dc": {
+      "count": 5998,
+      "min": 61082.143,
+      "max": 64458.947,
+      "mean": 62797.662,
+      "std": 722.963
+    },
+    "red_rms": {
+      "count": 5979,
+      "min": 124.814,
+      "max": 238.199,
+      "mean": 162.638,
+      "std": 23.969
+    },
+    "ir_rms": {
+      "count": 5979,
+      "min": 303.048,
+      "max": 586.902,
+      "mean": 379.593,
+      "std": 64.961
+    },
+    "red_filt": {
+      "count": 5998,
+      "min": -604.781,
+      "max": 432.441,
+      "mean": 1.09,
+      "std": 161.736
+    },
+    "ir_filt": {
+      "count": 5998,
+      "min": -1450.333,
+      "max": 1029.985,
+      "mean": 23.434,
+      "std": 375.126
+    },
+    "finger_score": {
+      "count": 5979,
+      "min": 6.108,
+      "max": 6.446,
+      "mean": 6.28,
+      "std": 0.072
+    },
+    "hr_bpm": {
+      "count": 3998,
+      "min": 82.192,
+      "max": 96.774,
+      "mean": 86.685,
+      "std": 2.88
+    },
+    "hr_peak_bpm": {
+      "count": 3736,
+      "min": 83.333,
+      "max": 101.695,
+      "mean": 88.517,
+      "std": 4.989
+    },
+    "hr_autocorr_bpm": {
+      "count": 3998,
+      "min": 82.192,
+      "max": 96.774,
+      "mean": 86.692,
+      "std": 2.887
+    },
+    "spo2": {
+      "count": 3998,
+      "min": 96.37,
+      "max": 96.749,
+      "mean": 96.507,
+      "std": 0.08
+    },
+    "ratio": {
+      "count": 3998,
+      "min": 0.46448,
+      "max": 0.5186,
+      "mean": 0.49893,
+      "std": 0.01137
+    }
+  },
+  "detection": {
+    "finger_present_samples": 5979,
+    "finger_present_fraction": 0.9968,
+    "peak_count": 59
+  },
+  "final": {
+    "fs_hz": 100.0,
+    "finger_present": true,
+    "hr_bpm": 96.774,
+    "hr_peak_bpm": 95.238,
+    "hr_autocorr_bpm": 96.774,
+    "spo2": 96.538,
+    "ratio": 0.49451
+  }
+}

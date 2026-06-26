@@ -1,0 +1,182 @@
+{
+  "session_id": "11_light_pressure_confirm_repeat_warmup20_raw",
+  "label": "11_light_pressure_confirm_repeat_warmup20",
+  "notes": "Offline replay warmup 20s",
+  "port": null,
+  "baud": 115200,
+  "elapsed_s": 17.009,
+  "samples": 6000,
+  "raw_csv": "testing dataset\\97_verify_warmup_10_replays\\11_light_pressure_confirm_repeat_warmup20_raw.csv",
+  "processed_csv": "testing dataset\\97_verify_warmup_10_replays\\11_light_pressure_confirm_repeat_warmup20_raw_processed.csv",
+  "event_csv": "testing dataset\\97_verify_warmup_10_replays\\11_light_pressure_confirm_repeat_warmup20_raw_events.csv",
+  "events": [],
+  "parameters": {
+    "window_s": 10.0,
+    "finger_ir_min": 10000.0,
+    "min_ac_rms": 10.0,
+    "min_peak_ms": 300.0,
+    "max_peak_ms": 1200.0,
+    "dc_alpha": 0.02,
+    "filt_alpha": 0.2,
+    "warmup_s": 20.0,
+    "min_spo2_score": 4.0,
+    "min_valid_hr_bpm": 45.0,
+    "max_valid_hr_bpm": 190.0
+  },
+  "first_sample": {
+    "t_ms": 5839046,
+    "red": 57644,
+    "ir": 65291,
+    "irq_count": 523579,
+    "sample_count": 584041
+  },
+  "last_sample": {
+    "t_ms": 5899039,
+    "red": 57582,
+    "ir": 65686,
+    "irq_count": 528978,
+    "sample_count": 590040
+  },
+  "data_quality": {
+    "time_gap_ms": {
+      "count": 5999,
+      "min": -30.0,
+      "max": 52.0,
+      "mean": 10.001,
+      "std": 5.398
+    },
+    "sample_count_gap": {
+      "count": 5999,
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "nonmonotonic_t_ms": 60,
+    "nonmonotonic_sample_count": 0,
+    "missing_sample_count": 0
+  },
+  "raw_stats": {
+    "red": {
+      "count": 6000,
+      "min": 56444.0,
+      "max": 58446.0,
+      "mean": 57374.292,
+      "std": 389.381
+    },
+    "ir": {
+      "count": 6000,
+      "min": 62720.0,
+      "max": 67284.0,
+      "mean": 64909.762,
+      "std": 954.537
+    }
+  },
+  "processed_stats": {
+    "fs_hz": {
+      "count": 5981,
+      "min": 100.0,
+      "max": 100.0,
+      "mean": 100.0,
+      "std": 0.0
+    },
+    "red_dc": {
+      "count": 6000,
+      "min": 56749.836,
+      "max": 58209.407,
+      "mean": 57375.183,
+      "std": 359.165
+    },
+    "ir_dc": {
+      "count": 6000,
+      "min": 63427.653,
+      "max": 66751.333,
+      "mean": 64907.782,
+      "std": 879.345
+    },
+    "red_rms": {
+      "count": 5981,
+      "min": 55.798,
+      "max": 178.702,
+      "mean": 129.913,
+      "std": 16.308
+    },
+    "ir_rms": {
+      "count": 5981,
+      "min": 131.304,
+      "max": 428.635,
+      "mean": 318.903,
+      "std": 34.303
+    },
+    "red_filt": {
+      "count": 6000,
+      "min": -390.205,
+      "max": 335.772,
+      "mean": -0.913,
+      "std": 132.252
+    },
+    "ir_filt": {
+      "count": 6000,
+      "min": -860.708,
+      "max": 752.406,
+      "mean": 1.903,
+      "std": 320.43
+    },
+    "finger_score": {
+      "count": 5981,
+      "min": 6.343,
+      "max": 6.675,
+      "mean": 6.491,
+      "std": 0.088
+    },
+    "hr_bpm": {
+      "count": 4000,
+      "min": 78.947,
+      "max": 92.308,
+      "mean": 85.483,
+      "std": 4.94
+    },
+    "hr_peak_bpm": {
+      "count": 5764,
+      "min": 68.966,
+      "max": 103.448,
+      "mean": 84.832,
+      "std": 6.51
+    },
+    "hr_autocorr_bpm": {
+      "count": 4000,
+      "min": 78.947,
+      "max": 92.308,
+      "mean": 85.484,
+      "std": 4.938
+    },
+    "spo2": {
+      "count": 4000,
+      "min": 97.379,
+      "max": 97.921,
+      "mean": 97.789,
+      "std": 0.101
+    },
+    "ratio": {
+      "count": 4000,
+      "min": 0.43988,
+      "max": 0.51734,
+      "mean": 0.45868,
+      "std": 0.01449
+    }
+  },
+  "detection": {
+    "finger_present_samples": 5981,
+    "finger_present_fraction": 0.9968,
+    "peak_count": 82
+  },
+  "final": {
+    "fs_hz": 100.0,
+    "finger_present": true,
+    "hr_bpm": 82.192,
+    "hr_peak_bpm": 83.333,
+    "hr_autocorr_bpm": 82.192,
+    "spo2": 97.449,
+    "ratio": 0.50728
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "session_id": "verify_hrwide_no_finger_01",
+  "label": "verify_hrwide_no_finger",
+  "notes": "verify no finger remains blank",
+  "port": null,
+  "baud": 115200,
+  "elapsed_s": 0.049,
+  "samples": 2002,
+  "raw_csv": "verify_hrwide_no_finger_01.csv",
+  "processed_csv": "verify_hrwide_no_finger_01_processed.csv",
+  "event_csv": "verify_hrwide_no_finger_01_events.csv",
+  "events": [
+    {
+      "event_s": 0.0,
+      "event_label": "no_finger"
+    }
+  ],
+  "parameters": {
+    "window_s": 10.0,
+    "finger_ir_min": 10000.0,
+    "min_ac_rms": 10.0,
+    "min_peak_ms": 300.0,
+    "max_peak_ms": 1500.0,
+    "dc_alpha": 0.02,
+    "filt_alpha": 0.2,
+    "warmup_s": 20.0,
+    "min_spo2_score": 4.0
+  },
+  "first_sample": {
+    "t_ms": 651543,
+    "red": 347,
+    "ir": 324,
+    "irq_count": 58328,
+    "sample_count": 65112
+  },
+  "last_sample": {
+    "t_ms": 671543,
+    "red": 354,
+    "ir": 324,
+    "irq_count": 60121,
+    "sample_count": 67113
+  },
+  "data_quality": {
+    "time_gap_ms": {
+      "count": 2001,
+      "min": -35.0,
+      "max": 57.0,
+      "mean": 9.995,
+      "std": 5.751
+    },
+    "sample_count_gap": {
+      "count": 2001,
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "nonmonotonic_t_ms": 20,
+    "nonmonotonic_sample_count": 0,
+    "missing_sample_count": 0
+  },
+  "raw_stats": {
+    "red": {
+      "count": 2002,
+      "min": 331.0,
+      "max": 364.0,
+      "mean": 348.792,
+      "std": 4.251
+    },
+    "ir": {
+      "count": 2002,
+      "min": 306.0,
+      "max": 354.0,
+      "mean": 327.32,
+      "std": 4.282
+    }
+  },
+  "processed_stats": {
+    "fs_hz": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "red_dc": {
+      "count": 2002,
+      "min": 331.0,
+      "max": 364.0,
+      "mean": 348.792,
+      "std": 4.251
+    },
+    "ir_dc": {
+      "count": 2002,
+      "min": 306.0,
+      "max": 354.0,
+      "mean": 327.32,
+      "std": 4.282
+    },
+    "red_rms": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "ir_rms": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "red_filt": {
+      "count": 2002,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "ir_filt": {
+      "count": 2002,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "finger_score": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_peak_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_autocorr_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "spo2": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "ratio": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    }
+  },
+  "detection": {
+    "finger_present_samples": 0,
+    "finger_present_fraction": 0.0,
+    "peak_count": 0
+  },
+  "final": {
+    "fs_hz": null,
+    "finger_present": false,
+    "hr_bpm": null,
+    "hr_peak_bpm": null,
+    "hr_autocorr_bpm": null,
+    "spo2": null,
+    "ratio": null
+  }
+}

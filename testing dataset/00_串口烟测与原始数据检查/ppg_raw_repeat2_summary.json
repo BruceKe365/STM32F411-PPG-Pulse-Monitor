@@ -1,0 +1,36 @@
+{
+  "port": "COM7",
+  "baud": 115200,
+  "elapsed_s": 6.058,
+  "samples": 601,
+  "raw_csv": "ppg_raw_repeat2.csv",
+  "processed_csv": "ppg_raw_repeat2_processed.csv",
+  "parameters": {
+    "window_s": 10.0,
+    "finger_ir_min": 10000.0,
+    "min_ac_rms": 20.0,
+    "min_peak_ms": 400.0,
+    "max_peak_ms": 1500.0
+  },
+  "first_sample": {
+    "t_ms": 38483,
+    "red": 362,
+    "ir": 331,
+    "irq_count": 3369,
+    "sample_count": 3771
+  },
+  "last_sample": {
+    "t_ms": 44480,
+    "red": 365,
+    "ir": 332,
+    "irq_count": 3905,
+    "sample_count": 4371
+  },
+  "final": {
+    "fs_hz": 100.05,
+    "finger_present": false,
+    "hr_bpm": null,
+    "spo2": null,
+    "ratio": null
+  }
+}

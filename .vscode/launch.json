@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "DAPLink OpenOCD: Flash and Debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/STM32_F411_Test.elf",
+            "servertype": "openocd",
+            "serverpath": "${workspaceFolder}/tools/xpack-openocd-0.12.0-7/bin/openocd.exe",
+            "searchDir": [
+                "${workspaceFolder}/tools/xpack-openocd-0.12.0-7/openocd/scripts"
+            ],
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "gdbPath": "${env:LOCALAPPDATA}/stm32cube/bundles/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-gdb.exe",
+            "runToEntryPoint": "main",
+            "interface": "swd",
+            "showDevDebugOutput": "none",
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off"
+            ],
+            "postLaunchCommands": [
+                "monitor arm semihosting enable"
+            ],
+            "openOCDLaunchCommands": [
+                "adapter speed 2000"
+            ]
+        }
+    ]
+}

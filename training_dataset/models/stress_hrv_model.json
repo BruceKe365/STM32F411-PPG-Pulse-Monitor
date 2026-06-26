@@ -1,0 +1,400 @@
+{
+  "model_type": "logistic_regression",
+  "features": [
+    "valid_interval_count",
+    "mean_hr_bpm",
+    "mean_ppi_ms",
+    "sdnn_ms",
+    "rmssd_ms",
+    "sdsd_ms",
+    "pnn20_pct",
+    "pnn50_pct",
+    "cv_ppi",
+    "median_abs_delta_ms",
+    "p80_abs_delta_ms",
+    "p95_abs_delta_ms",
+    "outlier_frac"
+  ],
+  "class_names": {
+    "0": "nonstress",
+    "1": "stress"
+  },
+  "scaler_mean": [
+    78.1634016028495,
+    78.68242212025177,
+    782.1883878168254,
+    199.52416970061014,
+    248.7957348158994,
+    250.4485350653458,
+    80.07597334222459,
+    61.74002630686933,
+    0.2593379712618624,
+    118.33885240427426,
+    284.58231300089045,
+    518.6960847061442,
+    0.14316685416610664
+  ],
+  "scaler_scale": [
+    13.045762177042187,
+    12.944551764645775,
+    122.07363000143222,
+    74.11240506239969,
+    98.57542334769829,
+    99.29883761289544,
+    15.120519173862872,
+    20.87687531443662,
+    0.09742544152444907,
+    79.15927881894058,
+    144.17436097341346,
+    207.06571242796616,
+    0.10408446952504631
+  ],
+  "coef": [
+    -0.14186110786857653,
+    3.2654060565733767,
+    -0.7706127672703,
+    3.903254307825424,
+    -0.025520606129145744,
+    0.06067799762859292,
+    1.327811174338589,
+    -1.1102607605236658,
+    -1.62663860089077,
+    0.1386689295906124,
+    1.0292609184999002,
+    0.5556018513952633,
+    -1.7292718113954262
+  ],
+  "intercept": -1.487949622133821,
+  "index_calibration": {
+    "prob_nonstress_median": 0.06719434475665409,
+    "prob_stress_median": 0.8950332907668177,
+    "index_nonstress_target": 45.0,
+    "index_stress_target": 82.0,
+    "display_index_bias": 5.0,
+    "index_min": 1,
+    "index_max": 99
+  },
+  "metadata": {
+    "source_dataset": "WESAD",
+    "signal": "bvp",
+    "window_s": 60.0,
+    "step_s": 10.0,
+    "min_intervals": 45,
+    "label_purity": 0.8,
+    "exclude_amusement": false,
+    "seed": 411,
+    "train_windows": 2246,
+    "feature_note": "PPI/HRV interval features only; no ECG/PPG morphology, EDA, respiration, or temperature.",
+    "display_note": "1-29 relaxed, 30-59 normal, 60-79 medium, 80-99 high; invalid windows should display --.",
+    "all_windows": 3066,
+    "test_windows": 820,
+    "input_digest_sha256": "543824e92336a01c29e0c39854161730962a9ebb966348388344f4ca7deb1078",
+    "train_subjects": [
+      "S10",
+      "S11",
+      "S14",
+      "S16",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S8",
+      "S9"
+    ],
+    "test_subjects": [
+      "S13",
+      "S15",
+      "S17",
+      "S7"
+    ]
+  },
+  "validation": {
+    "wesad_all": {
+      "name": "wesad_all",
+      "count": 3066,
+      "class_counts": {
+        "0": 2177,
+        "1": 889
+      },
+      "index_threshold_for_stress": 60,
+      "confusion": {
+        "tp": 848,
+        "fp": 620,
+        "tn": 1557,
+        "fn": 41
+      },
+      "accuracy": 0.7844,
+      "precision": 0.5777,
+      "recall": 0.9539,
+      "specificity": 0.7152,
+      "f1": 0.7196,
+      "auc": 0.9412,
+      "stress_index_all": {
+        "count": 3066,
+        "min": 47.0,
+        "p25": 48.0,
+        "median": 58.0,
+        "mean": 63.93,
+        "p75": 81.0,
+        "max": 92.0
+      },
+      "stress_index_nonstress": {
+        "count": 2177,
+        "min": 47.0,
+        "p25": 47.0,
+        "median": 50.0,
+        "mean": 56.072,
+        "p75": 62.0,
+        "max": 92.0
+      },
+      "stress_index_stress": {
+        "count": 889,
+        "min": 48.0,
+        "p25": 80.0,
+        "median": 87.0,
+        "mean": 83.172,
+        "p75": 90.0,
+        "max": 92.0
+      },
+      "stress_index_by_state": {
+        "amusement": {
+          "count": 475,
+          "min": 47.0,
+          "p25": 48.0,
+          "median": 54.0,
+          "mean": 60.051,
+          "p75": 72.0,
+          "max": 92.0
+        },
+        "baseline": {
+          "count": 1702,
+          "min": 47.0,
+          "p25": 47.0,
+          "median": 50.0,
+          "mean": 54.962,
+          "p75": 59.75,
+          "max": 91.0
+        },
+        "stress": {
+          "count": 889,
+          "min": 48.0,
+          "p25": 80.0,
+          "median": 87.0,
+          "mean": 83.172,
+          "p75": 90.0,
+          "max": 92.0
+        }
+      }
+    },
+    "wesad_train_by_subject": {
+      "name": "wesad_train_by_subject",
+      "count": 2246,
+      "class_counts": {
+        "0": 1614,
+        "1": 632
+      },
+      "index_threshold_for_stress": 60,
+      "confusion": {
+        "tp": 606,
+        "fp": 434,
+        "tn": 1180,
+        "fn": 26
+      },
+      "accuracy": 0.7952,
+      "precision": 0.5827,
+      "recall": 0.9589,
+      "specificity": 0.7311,
+      "f1": 0.7249,
+      "auc": 0.9454,
+      "stress_index_all": {
+        "count": 2246,
+        "min": 47.0,
+        "p25": 48.0,
+        "median": 57.0,
+        "mean": 63.363,
+        "p75": 80.0,
+        "max": 92.0
+      },
+      "stress_index_nonstress": {
+        "count": 1614,
+        "min": 47.0,
+        "p25": 47.0,
+        "median": 50.0,
+        "mean": 55.644,
+        "p75": 61.0,
+        "max": 92.0
+      },
+      "stress_index_stress": {
+        "count": 632,
+        "min": 48.0,
+        "p25": 79.0,
+        "median": 87.0,
+        "mean": 83.074,
+        "p75": 90.0,
+        "max": 92.0
+      },
+      "stress_index_by_state": {
+        "amusement": {
+          "count": 367,
+          "min": 47.0,
+          "p25": 48.0,
+          "median": 54.0,
+          "mean": 59.665,
+          "p75": 71.5,
+          "max": 92.0
+        },
+        "baseline": {
+          "count": 1247,
+          "min": 47.0,
+          "p25": 47.0,
+          "median": 50.0,
+          "mean": 54.461,
+          "p75": 58.0,
+          "max": 90.0
+        },
+        "stress": {
+          "count": 632,
+          "min": 48.0,
+          "p25": 79.0,
+          "median": 87.0,
+          "mean": 83.074,
+          "p75": 90.0,
+          "max": 92.0
+        }
+      }
+    },
+    "wesad_test_by_subject": {
+      "name": "wesad_test_by_subject",
+      "count": 820,
+      "class_counts": {
+        "0": 563,
+        "1": 257
+      },
+      "index_threshold_for_stress": 60,
+      "confusion": {
+        "tp": 242,
+        "fp": 186,
+        "tn": 377,
+        "fn": 15
+      },
+      "accuracy": 0.7549,
+      "precision": 0.5654,
+      "recall": 0.9416,
+      "specificity": 0.6696,
+      "f1": 0.7066,
+      "auc": 0.9293,
+      "stress_index_all": {
+        "count": 820,
+        "min": 47.0,
+        "p25": 48.0,
+        "median": 62.0,
+        "mean": 65.483,
+        "p75": 83.0,
+        "max": 92.0
+      },
+      "stress_index_nonstress": {
+        "count": 563,
+        "min": 47.0,
+        "p25": 47.0,
+        "median": 52.0,
+        "mean": 57.298,
+        "p75": 65.5,
+        "max": 91.0
+      },
+      "stress_index_stress": {
+        "count": 257,
+        "min": 49.0,
+        "p25": 81.0,
+        "median": 87.0,
+        "mean": 83.412,
+        "p75": 90.0,
+        "max": 92.0
+      },
+      "stress_index_by_state": {
+        "amusement": {
+          "count": 108,
+          "min": 47.0,
+          "p25": 47.0,
+          "median": 55.0,
+          "mean": 61.361,
+          "p75": 75.25,
+          "max": 91.0
+        },
+        "baseline": {
+          "count": 455,
+          "min": 47.0,
+          "p25": 47.0,
+          "median": 50.0,
+          "mean": 56.334,
+          "p75": 64.0,
+          "max": 91.0
+        },
+        "stress": {
+          "count": 257,
+          "min": 49.0,
+          "p25": 81.0,
+          "median": 87.0,
+          "mean": 83.412,
+          "p75": 90.0,
+          "max": 92.0
+        }
+      }
+    },
+    "local_ppg_normal_smoke": {
+      "files": 3,
+      "total_windows": 0,
+      "stress_index": {
+        "count": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "mean": null,
+        "p75": null,
+        "max": null
+      },
+      "file_summaries": [
+        {
+          "file": "testing dataset\\10_light_pressure_best_stable\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\11_light_pressure_confirm_repeat\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\12_light_pressure_final_check\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        }
+      ],
+      "detail_csv": "training_dataset\\reports\\local_ppg_stress_index.csv"
+    }
+  }
+}

@@ -1,0 +1,278 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath, amssymb, geometry, booktabs, array, listings}
+\geometry{a4paper, margin=2.5cm}
+\title{基于PPG的房颤风险与压力指数模型\\——算法选型、运作机理与验证详解}
+\author{项目组}
+\date{2026年6月23日}
+
+\begin{document}
+
+\maketitle
+
+\section{概述}
+本项目在STM32F411嵌入式平台上，通过MAX30102传感器采集PPG信号，实现了两个独立的机器学习功能模块：
+\begin{itemize}
+    \item \textbf{房颤（AF）风险概率}：输出0--100\%的风险值，反映当前心搏节律的“不规则程度”；
+    \item \textbf{压力趋势指数}：输出1--99的分数，反映当前HRV模式与压力/高唤醒状态的匹配程度。
+\end{itemize}
+两者共享底层PPI（脉搏间期）提取，但针对不同任务的数据特点与工程约束，分别选用了离散朴素贝叶斯与标准化逻辑回归。以下分模块详细说明各自的选型理由、运作机理与验证方法。
+
+\section{房颤风险模型：离散朴素贝叶斯}
+
+\subsection{为什么选朴素贝叶斯？——工程与生理的双重考量}
+
+在STM32F411（Cortex-M4，512KB Flash，128KB RAM）上部署房颤风险推理，朴素贝叶斯具备以下不可替代的优势：
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}p{3.2cm}p{10cm}@{}}
+\toprule
+\textbf{考量维度} & \textbf{具体说明} \\
+\midrule
+\textbf{计算极简} & 推理过程不涉及矩阵乘法或迭代优化，仅需：分箱查边界 $\rightarrow$ 查条件概率表 $\rightarrow$ 累加对数概率 $\rightarrow$ 一次 \texttt{expf()}。单次推理耗时仅需数十微秒，完全不影响100Hz采样和OLED刷新。 \\
+\textbf{存储极省} & 模型参数仅为一组分箱边界和两张条件概率表（约200个浮点数），直接以 \texttt{const float} 数组固化在Flash中，不占用宝贵RAM。 \\
+\textbf{生理可解释} & 11个输入特征（如均值、IQR、pNN50）均有明确的生理含义。当模型输出高风险时，可以追溯是“离散度过大”还是“相邻差突变比例过高”在主导，这对非黑盒的医疗健康类项目至关重要。 \\
+\textbf{对抗离群值} & 连续特征先离散化（分箱）再统计频率，避免了极端异常值（如偶然的一次长间歇）对概率估计的过度影响；结合拉普拉斯平滑，确保零概率箱不会完全否决某一类别。 \\
+\textbf{训练-部署解耦} & 复杂的概率统计在PC端用Python完成，MCU只执行确定性的查表累加。参数一经导出，PC端的\texttt{validate\_mcu\_af\_live.py}可完全复现MCU的推理逻辑，确保移植一致性。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+尽管生理特征并非完全独立（如SDNN与CV天然相关），但朴素贝叶斯在本项目中定位为“风险提示”而非“精确诊断”，独立性假设带来的偏差完全在可接受范围内，而其轻量化收益却是指数级的。
+
+\subsection{11维PPI特征}
+给定一个窗口内的PPI序列 $\{PPI_1, PPI_2, \ldots, PPI_N\}$（要求 $N \ge 20$），提取以下特征：
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}cll@{}}
+\toprule
+序号 & 特征名称 & 含义 \\
+\midrule
+1 & 有效间期数 $N$ & 窗口内可用PPI数量 \\
+2 & 平均间期 $\overline{PPI}$ & 算术平均值 \\
+3 & 四分位距 IQR & Q75 $-$ Q25，反映中间50\%的分散程度 \\
+4 & 截尾标准差 & 去掉两端10\%后的标准差，抗离群值 \\
+5 & 截尾变异系数 & 截尾标准差 / 截尾均值 \\
+6 & 相邻差绝对值中位数 & $\text{median}(|PPI_i - PPI_{i-1}|)$ \\
+7 & 相邻差80\%分位 & 大幅变化的阈值 \\
+8 & 相邻差95\%分位 & 极端变化的阈值 \\
+9 & pNN50 & $|PPI_i - PPI_{i-1}| > 50\text{ms}$ 的比例 \\
+10 & pNN80 & $> 80\text{ms}$ 的比例 \\
+11 & pNN120 & $> 120\text{ms}$ 的比例 \\
+\bottomrule
+\end{tabular}
+\caption{房颤模型的11个PPI统计特征}
+\end{table}
+
+房颤时，IQR、截尾CV、pNN50等特征会显著升高，模型正是捕捉这种“无序性”。
+
+\subsection{运作机理（三步走）}
+
+\paragraph{第一步：特征提取} 将实时累积的PPI序列按上述公式计算出11个数值。
+
+\paragraph{第二步：离散化（分箱）} 每个特征不直接输入，而是先映射到预先定义好的区间（箱）。例如，\texttt{mean\_ppi} 的分箱边界为：$<450$, $450$--$550$, $550$--$650$, \dots, $\ge1600$ ms。所有特征分箱后，一个窗口就变成一个11位的“编码”，每一位表示该特征落在哪个箱中。
+
+\paragraph{第三步：查表计算后验概率} 
+在训练阶段（使用PhysioNet公开数据），统计出两大类（正常、房颤）下每个特征各箱的条件概率，并取对数存储为两张表：
+\begin{itemize}
+    \item 正常类别下，特征$i$在箱$b$的对数概率：$\log P(X_i = b \mid \text{Normal})$
+    \item 房颤类别下，特征$i$在箱$b$的对数概率：$\log P(X_i = b \mid \text{AF})$
+\end{itemize}
+实际推理时，根据当前窗口各特征所在箱号，从表中取出对应的对数概率并累加，再加上类别先验的对数：
+\begin{equation}
+\text{Score}_C = \log P(C) + \sum_{i=1}^{11} \log P(X_i = \text{bin}_i \mid C), \quad C \in \{\text{Normal}, \text{AF}\}
+\end{equation}
+最后将两类分数之差通过sigmoid转换成风险百分比：
+\begin{equation}
+\text{Risk} = \frac{100}{1 + \exp\left(-(\text{Score}_{\text{AF}} - \text{Score}_{\text{Normal}})\right)}
+\end{equation}
+
+\paragraph{为什么用对数？} 因为很多概率值很小（如0.05），连乘会下溢；取对数后乘法变加法，数值稳定且计算快。
+
+\subsection{AF Test 固定序列验证——防止“造假”质疑的硬证据}
+
+为了在演示时快速展示模型对典型房颤模式的确定性响应，并证明MCU端的计算不是随机或偶然的，我们在固件中预先固化了一组来自\textbf{PhysioNet AFDB公开数据库}的真实房颤PPI序列。该序列对应记录\texttt{AFDB 06995}的时间区间\texttt{9030s--9060s}，经PC端相同模型计算，风险约为85\%。
+
+在AF Test页面，MCU按照真实PPI间隔依次播放这组数据，实时计算并显示风险值。数据定义如下（摘自\texttt{core/src/main.c}）：
+
+\begin{lstlisting}[language=C, basicstyle=\small\ttfamily, breaklines=true]
+static const uint16_t af_test_ppi_ms[] = {
+  /* AFDB 06995, 9030s..9060s, AF rhythm, 30s RR/PPI window, PC risk ~=85%. */
+  540U, 800U, 784U, 556U, 800U, 760U, 780U, 796U, 792U, 752U, 756U, 776U,
+  784U, 788U, 788U, 756U, 772U, 696U, 868U, 764U, 536U, 836U, 804U, 816U,
+  804U, 784U, 772U, 800U, 808U, 404U, 1104U, 644U, 552U, 840U, 692U, 840U,
+  764U, 760U, 776U, 800U
+};
+\end{lstlisting}
+
+该数组包含40个PPI值（单位ms），覆盖约30秒的房颤节律。演示时，风险值稳定在80\%以上，且每次上电复现结果一致。这证明了：
+\begin{enumerate}
+    \item 模型对确定性房颤模式的输出是\textbf{可复现的}，而非随机噪声；
+    \item MCU端的特征计算、分箱查表与PC端训练代码\textbf{逻辑完全一致}；
+    \item 项目具备可演示的“标准用例”，便于验收时客观评估模型功能。
+\end{enumerate}
+
+\subsection{训练数据与性能}
+\begin{itemize}
+    \item 数据来源：PhysioNet AFDB（房颤）、LTAFDB（长期房颤）、NSR2DB（正常窦性）的RR间期标注；
+    \item 训练窗口：约82万（56万正常 + 26万房颤）；测试窗口（按记录划分，无泄漏）：约28万；
+    \item 测试集：准确率91.8\%，召回率94.4\%，特异度91.0\%，AUC 0.958。
+\end{itemize}
+
+\subsection{MCU推理与工程策略}
+在STM32端，除了上述查表推理，还叠加了：
+\begin{itemize}
+    \item PPI质量门控（拒绝超过20\%异常间期的窗口）；
+    \item PPI反推平均HR与自相关HR一致性检查（相差不超过18 bpm）；
+    \item 向上跳变保护（单次风险升高超过20个百分点则保持旧值）；
+    \item 低风险时延长刷新间隔（从10秒到30秒），减少不必要的波动。
+\end{itemize}
+
+\section{压力指数模型：标准化逻辑回归}
+
+\subsection{为什么选逻辑回归？——匹配任务本质与数据规模}
+
+压力模型要回答的是：“最近60秒的HRV特征组合，更像压力状态还是非压力状态？”逻辑回归在此场景下具备天然的适配性：
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}p{3.2cm}p{10cm}@{}}
+\toprule
+\textbf{考量维度} & \textbf{具体说明} \\
+\midrule
+\textbf{任务本质匹配} & 压力判断本质是一个\textbf{线性可分}问题——在HRV特征空间中，压力状态与非压力状态之间存在一个大致线性的决策边界（交感/副交感此消彼长）。逻辑回归正是学习这个边界的最佳线性模型。 \\
+\textbf{小样本泛化能力} & WESAD数据集规模有限（约3000个窗口）。相比神经网络或复杂非线性模型，逻辑回归参数极少（仅13个权重+1个截距），严格遵守奥卡姆剃刀原则，在测试集上不易过拟合（测试AUC依然达到0.929）。 \\
+\textbf{概率标定天然方便} & 逻辑回归直接输出校准后的概率 $p \in (0,1)$，后续映射到1--99指数只需简单的线性插值，无需额外校准。 \\
+\textbf{部署极简} & MCU推理只需三步：标准化（减均值除标准差）$\rightarrow$ 乘加求和 $\rightarrow$ sigmoid。无需排序、无需查多维表，对MCU的FPU单元非常友好。 \\
+\textbf{可解释的权重} & 13个特征的系数直接显示哪些HRV指标在驱动“压力”判断（例如RMSSD的正系数表示其升高会推高压力概率），便于验收时解释模型行为。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{13维HRV特征}
+对60秒窗口内的PPI序列（MCU实际使用至少28个PPI且覆盖40秒）计算：
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}cll@{}}
+\toprule
+序号 & 特征名称 & 含义 \\
+\midrule
+1 & 有效间期数 & $N$ \\
+2 & 平均心率 & $60000 / \overline{PPI}$ \\
+3 & 平均PPI & $\overline{PPI}$ \\
+4 & SDNN & PPI样本标准差 \\
+5 & RMSSD & $\sqrt{\frac{1}{N-1}\sum \Delta_i^2}$，相邻差均方根 \\
+6 & SDSD & 相邻差 $\Delta_i$ 的标准差 \\
+7 & pNN20 & $|\Delta_i| > 20\text{ms}$ 的比例 \\
+8 & pNN50 & $|\Delta_i| > 50\text{ms}$ 的比例 \\
+9 & CV & SDNN / $\overline{PPI}$ \\
+10 & 相邻差绝对值中位数 & $\text{median}(|\Delta_i|)$ \\
+11 & 相邻差P80 & $|\Delta_i|$ 的80\%分位 \\
+12 & 相邻差P95 & $|\Delta_i|$ 的95\%分位 \\
+13 & 异常间期比例 & PPI超出中位数$0.65$--$1.55$倍的比例 \\
+\bottomrule
+\end{tabular}
+\caption{压力模型的13个HRV特征}
+\end{table}
+
+压力状态下，平均心率升高，RMSSD和pNN50降低（副交感受抑），SDNN和CV可能升高——整体表现为心跳加速且变“僵硬”。
+
+\subsection{运作机理（四步走）}
+
+\paragraph{第一步：特征提取} 计算出13个HRV指标。
+
+\paragraph{第二步：标准化} 由于各特征量纲不同（如心率70--90，SDNN 20--80），必须标准化：
+\begin{equation}
+\tilde{x}_i = \frac{x_i - \mu_i}{\sigma_i}
+\end{equation}
+其中 $\mu_i$、$\sigma_i$ 是训练集上该特征的均值和标准差。这一步让所有特征处于同一尺度，避免大数值特征主导梯度。
+
+\paragraph{第三步：线性组合 + Sigmoid} 训练得到的权重向量 $\mathbf{w}$ 和截距 $b$，计算线性分数：
+\begin{equation}
+z = b + \sum_{i=1}^{13} w_i \tilde{x}_i
+\end{equation}
+然后通过sigmoid得到压力概率：
+\begin{equation}
+p = \frac{1}{1 + e^{-z}}
+\end{equation}
+如果 $z$ 很大，$p$ 接近1，判为压力；如果 $z$ 很小，$p$ 接近0，判为非压力。
+
+本项目的具体系数（部分）：
+\begin{itemize}
+    \item 截距 $b = -1.48795$
+    \item 正系数如：SDNN (+3.27)、RMSSD (+3.90)、pNN50 (+1.33)——这些值越大，越易判为压力；
+    \item 负系数如：CV (-1.11)、相邻差中位数 (-1.63)——这些值越大，越易判为非压力。
+\end{itemize}
+注意：最终判断是13个特征共同作用的结果，不能将单个系数单独解读为绝对生理规律。
+
+\paragraph{第四步：概率标定为1--99指数} 利用训练集上两类窗口的概率中位数：
+\begin{itemize}
+    \item nonstress概率中位数 $p_n = 0.067$
+    \item stress概率中位数 $p_s = 0.895$
+\end{itemize}
+线性映射到显示分数45和82，再加偏置并截断：
+\begin{equation}
+I_{\text{raw}} = 45 + \frac{p - 0.067}{0.895 - 0.067} \times (82 - 45)
+\end{equation}
+\begin{equation}
+I_{\text{final}} = \text{clip}\left(\text{round}(I_{\text{raw}} + 5),\, 1,\, 99\right)
+\end{equation}
+
+\subsection{训练数据与性能}
+\begin{itemize}
+    \item 数据来源：WESAD（腕部BVP信号，15名受试者）；
+    \item 窗口数：共3066个（60秒窗口，10秒步长）；
+    \item 按受试者划分测试（严格避免数据泄漏）：测试集准确率75.5\%，召回率94.2\%，AUC 0.929；
+    \item 标定后：nonstress中位指数52，stress中位指数87，区分度明显。
+\end{itemize}
+
+\subsection{MCU推理与工程策略}
+MCU端除了标准化和线性组合外，还加入：
+\begin{itemize}
+    \item 至少28个有效PPI且覆盖≥40秒才计算；
+    \item 首次结果每10秒尝试，稳定后每30秒刷新；
+    \item 心率 >120 bpm 时显示“-- high HR”，避免运动伪迹误判为心理压力；
+    \item 窗口质量不达标时保留旧值，不显示异常值。
+\end{itemize}
+
+\section{两个模型的对比总结}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+对比维度 & 房颤（朴素贝叶斯） & 压力（逻辑回归） \\
+\midrule
+核心问题 & “这串PPI像正常还是房颤？” & “这组HRV像压力还是非压力？” \\
+特征数 & 11（离散化后查表） & 13（标准化后线性组合） \\
+模型本质 & 生成式（学习类条件分布） & 判别式（学习决策边界） \\
+推理运算 & 查边界$\rightarrow$查表$\rightarrow$累加$\rightarrow$exp & 减均值除标准差$\rightarrow$乘加$\rightarrow$exp \\
+MCU存储 & 分箱边界 + 条件概率表 & 均值/标准差/权重/截距 \\
+训练数据量 & 82万窗口 & 3066窗口 \\
+输出 & 0--100\% 风险 & 1--99 指数 \\
+主要工程保护 & PPI-HR一致性、跳变保护 & 高心率隐藏、质量门控 \\
+\bottomrule
+\end{tabular}
+\caption{房颤模型与压力模型核心差异}
+\end{table}
+
+\subsection*{一句通俗总结}
+\begin{itemize}
+    \item \textbf{朴素贝叶斯} = “查历史档案”——把新窗口的特征与历史数据库中正常/房颤的典型分布做对比，看它更像哪一类；
+    \item \textbf{逻辑回归} = “按权重打分”——每个特征乘以权重后求和，再通过S型曲线换算成概率。
+\end{itemize}
+
+\section{重要声明}
+\begin{enumerate}
+    \item 本系统输出均为“风险提示”和“趋势指数”，不作为医疗诊断依据；
+    \item 房颤模型基于PPI不规则性，不分析ECG的P波形态；压力模型反映HRV模式，不区分具体情绪；
+    \item 所有模型参数由公开数据集训练得到，并在PC端完成全部验证，MCU仅执行轻量推理；
+    \item 工程上已通过PC回放脚本（\texttt{validate\_mcu\_af\_live.py} 等）验证了MCU状态机与训练策略的一致性；
+    \item 固件中预置的AF Test固定序列来自PhysioNet公开数据库，可用于现场演示模型的确定性响应，验证推理的可复现性，而非“随机造假”。
+\end{enumerate}
+
+\end{document}

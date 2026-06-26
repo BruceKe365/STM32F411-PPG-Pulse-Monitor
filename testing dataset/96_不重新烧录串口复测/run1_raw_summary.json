@@ -1,0 +1,182 @@
+{
+  "session_id": "run1_raw",
+  "label": "serial_repeat_no_flash_run1",
+  "notes": "No flash, consecutive serial read run 1",
+  "port": "COM7",
+  "baud": 115200,
+  "elapsed_s": 6.067,
+  "samples": 602,
+  "raw_csv": "testing dataset\\96_serial_repeat_no_flash\\run1_raw.csv",
+  "processed_csv": "testing dataset\\96_serial_repeat_no_flash\\run1_raw_processed.csv",
+  "event_csv": "testing dataset\\96_serial_repeat_no_flash\\run1_raw_events.csv",
+  "events": [],
+  "parameters": {
+    "window_s": 10.0,
+    "finger_ir_min": 10000.0,
+    "min_ac_rms": 10.0,
+    "min_peak_ms": 300.0,
+    "max_peak_ms": 1200.0,
+    "dc_alpha": 0.02,
+    "filt_alpha": 0.2,
+    "warmup_s": 20.0,
+    "min_spo2_score": 4.0,
+    "min_valid_hr_bpm": 45.0,
+    "max_valid_hr_bpm": 190.0
+  },
+  "first_sample": {
+    "t_ms": 152010,
+    "red": 328,
+    "ir": 251,
+    "irq_count": 13213,
+    "sample_count": 14998
+  },
+  "last_sample": {
+    "t_ms": 158017,
+    "red": 325,
+    "ir": 248,
+    "irq_count": 13754,
+    "sample_count": 15599
+  },
+  "data_quality": {
+    "time_gap_ms": {
+      "count": 601,
+      "min": -30.0,
+      "max": 53.0,
+      "mean": 9.995,
+      "std": 5.594
+    },
+    "sample_count_gap": {
+      "count": 601,
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "nonmonotonic_t_ms": 6,
+    "nonmonotonic_sample_count": 0,
+    "missing_sample_count": 0
+  },
+  "raw_stats": {
+    "red": {
+      "count": 602,
+      "min": 314.0,
+      "max": 340.0,
+      "mean": 327.935,
+      "std": 4.234
+    },
+    "ir": {
+      "count": 602,
+      "min": 239.0,
+      "max": 268.0,
+      "mean": 253.158,
+      "std": 4.369
+    }
+  },
+  "processed_stats": {
+    "fs_hz": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "red_dc": {
+      "count": 602,
+      "min": 314.0,
+      "max": 340.0,
+      "mean": 327.935,
+      "std": 4.234
+    },
+    "ir_dc": {
+      "count": 602,
+      "min": 239.0,
+      "max": 268.0,
+      "mean": 253.158,
+      "std": 4.369
+    },
+    "red_rms": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "ir_rms": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "red_filt": {
+      "count": 602,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "ir_filt": {
+      "count": 602,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "finger_score": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_peak_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "hr_autocorr_bpm": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "spo2": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    },
+    "ratio": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null
+    }
+  },
+  "detection": {
+    "finger_present_samples": 0,
+    "finger_present_fraction": 0.0,
+    "peak_count": 0
+  },
+  "final": {
+    "fs_hz": null,
+    "finger_present": false,
+    "hr_bpm": null,
+    "hr_peak_bpm": null,
+    "hr_autocorr_bpm": null,
+    "spo2": null,
+    "ratio": null
+  }
+}

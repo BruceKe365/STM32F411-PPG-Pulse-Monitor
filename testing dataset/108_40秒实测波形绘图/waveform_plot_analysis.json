@@ -1,0 +1,29 @@
+{
+  "samples": 3519,
+  "missing_sample_count": 0,
+  "sample_time_gap_ms": {
+    "count": 3518,
+    "min": 10.0,
+    "max": 10.0,
+    "mean": 10.0,
+    "std": 0.0
+  },
+  "first_finger_s": 0.19,
+  "last_finger_s": 30.07,
+  "finger_duration_s": 29.89,
+  "first_hr_s": 12.0,
+  "first_hr_after_finger_s": 11.81,
+  "first_spo2_s": 20.0,
+  "first_spo2_after_finger_s": 19.81,
+  "hr_after_off_count": 0,
+  "spo2_after_off_count": 0,
+  "final": {
+    "fs_hz": 100.0,
+    "finger_present": false,
+    "hr_bpm": null,
+    "hr_peak_bpm": null,
+    "hr_autocorr_bpm": null,
+    "spo2": null,
+    "ratio": null
+  }
+}

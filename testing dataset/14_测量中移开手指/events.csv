@@ -1,0 +1,3 @@
+session_id,pc_time,event_s,event_label
+raw,2026-05-27T23:27:59.699,0.0,finger_light_on
+raw,2026-05-27T23:27:59.699,45.0,finger_off_prompt
