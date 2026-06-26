@@ -53,6 +53,21 @@
 | 调试/烧录 | DAPLink / CMSIS-DAP + SWD | OpenOCD 烧录和调试 |
 | 通信 | USB CDC FS | Windows 下枚举为虚拟串口，用于采集和诊断 |
 
+复现时建议准备的主要元件/模块：
+
+| 元件/模块 | 建议规格 | 连接或注意事项 |
+| --- | --- | --- |
+| STM32F411CEU6 最小系统或自制主板 | STM32F411CEUx，3.3 V 逻辑，25 MHz HSE | 与 `STM32_F411_Test.ioc` 的时钟和引脚配置保持一致。 |
+| MAX30102 PPG 传感器模块 | I2C，7-bit 地址 `0x57` | 接 I2C3：PA8=SCL、PB4=SDA；INT 接 PB5，下降沿触发并上拉。 |
+| 0.96 寸 SSD1306 OLED | I2C，128x64，常见 7-bit 地址 `0x3C` | 主显示屏，接 I2C1：PB6=SCL、PB7=SDA。 |
+| 0.91 寸 SSD1306 OLED | I2C，128x32，常见 7-bit 地址 `0x3C` | 波形屏，接 I2C2：PB10=SCL、PB3=SDA。 |
+| 用户按键 | 普通轻触按键 | 接 PA0，固件内使用上拉，低电平按下，用于切换显示模式。 |
+| DAPLink/CMSIS-DAP 或 ST-Link | SWD 调试器 | 至少连接 SWDIO、SWCLK、GND；主板已供电时不要再并接调试器 3V3 供电。 |
+| USB Type-C 数据线 | 支持数据传输 | 用于主板供电、USB CDC 虚拟串口和串口采集。 |
+| 锂电池供电板和电池 | 可选，见 PCB 工程 | 使用电池供电时参考 `PCB板文件(epro2文件)/锂电池供电电源板 30mm×40mm.epro2`。 |
+
+如果使用面包板或飞线复现，所有模块必须共地，并确认 OLED 与 MAX30102 模块均工作在 3.3 V 逻辑电平。更完整的封装、布局和供电连接以 `PCB板文件(epro2文件)/` 中的 PCB 工程为准。
+
 ## 引脚连接
 
 当前引脚分配来自 `STM32_F411_Test.ioc`、`Core/Src/i2c.c`、`Core/Src/gpio.c` 和 `Core/Src/main.c`：
