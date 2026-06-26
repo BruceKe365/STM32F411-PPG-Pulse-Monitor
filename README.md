@@ -132,6 +132,23 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 
 未在本文逐项解释的 `.settings/`、`.vscode/`、`.mxproject`、启动文件、链接脚本以及 CubeMX 生成的基础文件，多数属于 IDE/CubeMX/CMake 配置或 STM32 标准工程支撑文件。
 
+## Clone 后需要自行准备的内容
+
+本仓库保留的是可复现项目所需的源码、配置、PCB 工程、文档、模型参数、最终验证报告和匿名化本地采集数据；大体积公开数据、构建产物和本机工具链不直接提交。下载项目后不需要一次性补齐所有外部内容，按复现目标准备即可：
+
+| 目标 | 需要自行准备 | 说明 |
+| --- | --- | --- |
+| 阅读代码、文档、PCB、模型参数和最终验证结果 | 无额外下载 | 当前提交已经包含 README、AI 接手文档、Reports、PCB 工程、`training_dataset/models/` 和最终定稿验证报告。 |
+| 编译固件 | ARM GNU Toolchain、CMake/Ninja，或 VS Code STM32/CubeMX 插件环境 | `build/` 不随 Git 提交，需要本机重新生成 `build/Debug/STM32_F411_Test.elf`。 |
+| 重新打开或生成 CubeMX 工程 | STM32CubeMX 6.14.1 附近版本、STM32Cube FW_F4 V1.28.3 附近版本 | 当前仓库包含 `.ioc` 和 HAL/CMSIS 工程文件；只有重新生成工程时才需要重点核对 CubeMX 版本和用户代码段。 |
+| 烧录调试 | DAPLink/CMSIS-DAP 或 ST-Link、OpenOCD | `tools/xpack-openocd-0.12.0-7/` 不提交。可按 `tools/README.md` 放到该路径，也可以使用本机已有 OpenOCD 并修改命令路径。 |
+| 串口采集和实时诊断 | Python 3、`pyserial` | 使用 `python -m pip install pyserial` 安装后运行 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py`。 |
+| 重新训练 AF 模型或刷新公开 AF 数据 | 可选下载 PhysioNet AF/NSR 注释文件 | 当前提交已保留 `training_dataset/physionet/` 最小注释文件；缺失或想刷新时运行 `scripts/download_af_training_data.py`。 |
+| 重新训练 Stress 模型 | WESAD、`numpy`、`scipy`、`scikit-learn` | `training_dataset/wesad/` 体积较大，不提交。只有重新训练压力模型时才需要下载。 |
+| 重新生成 PDF 报告 | TeX/Tectonic 工具链 | `output/pdf/` 保留 `.tex` 源文件，生成的 PDF/aux 不提交。 |
+
+更详细的数据集和脚本说明分别见 `training_dataset/公开训练集说明.md`、`testing dataset/本地采集数据集说明.md` 和 `scripts/脚本使用说明.md`。
+
 ## 复现流程建议
 
 1. 打开 `PCB板文件(epro2文件)/` 中的两份 PCB 工程，结合上面的引脚表完成主板、供电板和外设连接。
@@ -162,7 +179,7 @@ OpenOCD 烧录命令可参考：
 
 ## Git 提交和外部数据边界
 
-当前 Git 提交包含固件源码、CubeMX/CMake 配置、PCB 工程、文档、脚本、模型参数、最终验证报告、`testing dataset/` 本地匿名采集数据，以及 `training_dataset/physionet/` 下用于 AF 训练/验证的 PhysioNet 最小注释文件。
+当前 Git 提交包含固件源码、CubeMX/CMake 配置、PCB 工程、文档、脚本、模型参数、最终定稿验证报告、`testing dataset/` 本地匿名采集数据，以及 `training_dataset/physionet/` 下用于 AF 训练/验证的 PhysioNet 最小注释文件。
 
 以下内容不随 Git 提交，需要本地生成或下载：
 
@@ -170,15 +187,23 @@ OpenOCD 烧录命令可参考：
 | --- | --- | --- |
 | `build/` | CMake 构建产物 | 运行 `cmake --preset Debug` 和 `cmake --build --preset Debug`。 |
 | `tools/xpack-openocd-0.12.0-7/` | 外部调试工具，平台相关且体积较大 | 下载 xPack OpenOCD，放到该路径，或改用本机 OpenOCD 路径。 |
-| `tools/tex/` | LaTeX/PDF 工具链 | 只有重新生成报告 PDF 时需要。 |
+| `tools/tex/` | LaTeX/PDF 工具链 | 只有重新生成报告 PDF 时需要，也可使用系统 PATH 中已有的 TeX/Tectonic。 |
 | `output/pdf/*.pdf`、`output/pdf/*.aux` | 可由 LaTeX 源文件重新生成 | 保留 `.tex` 源文件，PDF 本地生成。 |
 | `training_dataset/wesad/` | WESAD 约 2.5 GB | 运行 `python scripts/download_stress_training_data.py`，只在重新训练压力模型时需要。 |
 | `training_dataset/derived/` | 训练派生窗口，可重新生成 | 运行对应训练脚本重新生成。 |
+| `training_dataset/reports/` 下的历史候选报告 | 中间实验产物较多 | 当前只保留 `*_current` 定稿报告；需要新实验时用脚本重新生成候选目录。 |
 
 如果 `training_dataset/physionet/` 缺失或需要刷新公开 AF 数据，可运行：
 
 ```powershell
 python scripts/download_af_training_data.py --datasets afdb ltafdb nsr2db mitdb nsrdb
+```
+
+如果需要重新训练压力模型，先准备 Python 依赖和 WESAD：
+
+```powershell
+python -m pip install numpy scipy scikit-learn
+python scripts/download_stress_training_data.py
 ```
 
 ## 数据和算法说明
