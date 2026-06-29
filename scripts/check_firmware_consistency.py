@@ -193,6 +193,14 @@ def main() -> int:
         "full_stress_live_validation_20260617_current",
         "full_stress_train_validation_20260617_current",
         "--step-s 60",
+        "更新时间：2026-06-24",
+        "2026-06-23 验收定稿同步` 是最新状态",
+        "`0C. 2026-06-23 验收定稿同步`",
+        "以最前面的 2026-06-17 定稿速览",
+        "2026-06-17 完成最后一次模型、验证报告和本地数据同步",
+        "验证 MCU 等价 Stress live 逻辑",
+        "当前固件 Stress live 策略验证",
+        "压力 MCU live 回放报告",
     )
     for path in ROOT.rglob("*.md"):
         if any(part in {"build", "output", "tools"} for part in path.parts):
@@ -211,7 +219,7 @@ def main() -> int:
     print("Firmware consistency check PASSED")
     print("- AF firmware constants and embedded weights match model/report artifacts")
     print("- Stress firmware constants and embedded weights match model/report artifacts")
-    print("- Current report paths and documentation contain no known stale tokens")
+    print("- Current report paths and documentation contain no known stale paths or wording")
     return 0
 
 
