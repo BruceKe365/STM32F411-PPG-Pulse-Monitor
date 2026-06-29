@@ -120,7 +120,7 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 
 串口会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使用 Python 脚本采集、回放和验证。
 
-当前算法参数以 `Core/Src/main.c` 和对应 ELF 为权威基线。2026-06-29 已据此完成模型与报告一致性同步：AF 使用 30 秒窗口、至少 20 个 PPI、10 秒/30 秒快慢刷新和 25 bpm 心率跳变门限；Stress 使用 40 秒窗口、至少 28 个 PPI、10 秒/30 秒刷新和 HR>120 隐藏门限。正式 Stress JSON/头文件与 MCU 内嵌模型逐项一致，当前报告统一位于 `training_dataset/reports/full_*_20260629_current/`。
+当前算法参数以 `Core/Src/main.c` 和对应 ELF 为权威基线。2026-06-29 已据此完成模型与报告一致性同步：AF 使用 30 秒窗口、至少 20 个 PPI、10 秒/30 秒快慢刷新、18 bpm PPI-HR 容差和 20% 风险上跳保持；Stress 使用 40 秒窗口、至少 28 个 PPI、10 秒/30 秒刷新和 HR>120 隐藏门限；HR 显示使用 25 bpm 跳变门限和 10s 超时接受策略。正式 Stress JSON/头文件与 MCU 内嵌模型逐项一致，当前报告统一位于 `training_dataset/reports/full_*_20260629_current/`。
 
 ## 项目目录
 
