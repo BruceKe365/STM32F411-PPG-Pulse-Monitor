@@ -1,0 +1,131 @@
+group,file,rows,duration_s,finger_rows,valid_peak_rows,peak_span_s,windows,displayed_windows,raw_median,display_median,display_max,reason_counts,no_window_reason
+all_local_processed,testing dataset\00_串口烟测与原始数据检查\ppg_raw_repeat1_processed.csv,601,5.997,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\00_串口烟测与原始数据检查\ppg_raw_repeat2_processed.csv,601,5.997,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\01_无手指基线\processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\01_无手指基线\replay_v2_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\01_无手指基线\replay_v3_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\02_手指稳定初测\processed.csv,4501,44.999,4482,32,43.679,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\02_手指稳定初测\replay_v2_processed.csv,4501,44.999,3782,43,34.769,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\03_手指稳定心率调参\processed.csv,4498,44.968,4479,61,39.719,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\03_手指稳定心率调参\replay_min550_processed.csv,4498,44.968,4479,57,39.719,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\03_手指稳定心率调参\replay_v3_processed.csv,4498,44.968,4479,48,31.971,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\03_手指稳定心率调参\replay_v4_processed.csv,4498,44.968,4479,44,29.031,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\04_延迟接触预热测试\processed.csv,4501,44.995,3954,31,25.65,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\04_延迟接触预热测试\replay_v5_processed.csv,4501,44.995,3954,29,23.45,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\04_延迟接触预热测试\replay_v6_processed.csv,4501,44.995,3949,29,23.45,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\04_延迟接触预热测试\replay_w20_processed.csv,4501,44.995,3949,24,18.481,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\05_稳定心率良好参考\processed.csv,4501,44.998,4302,35,22.521,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\05_稳定心率良好参考\raw_processed_replay_robust.csv,4501,45.0,4302,45,29.66,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\05_稳定心率良好参考\replay_v2_processed.csv,4501,44.998,4302,35,22.521,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\05_稳定心率良好参考\replay_v3_processed.csv,4501,44.998,4302,35,22.521,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\06_强按低质量血氧空白\processed.csv,4497,44.968,500,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\06_强按低质量血氧空白\raw_processed_replay_robust.csv,4497,44.96,4478,61,43.37,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\06_强按低质量血氧空白\replay_v2_processed.csv,4497,44.968,4478,34,23.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\06_强按低质量血氧空白\replay_v3_processed.csv,4497,44.968,4478,34,23.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\06_强按低质量血氧空白\replay_v4_processed.csv,4497,44.968,4478,34,23.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\06_强按低质量血氧空白\replay_v5_processed.csv,4497,44.968,4478,34,23.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\07_手表97血氧参考\processed.csv,4498,44.978,4479,37,24.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\07_手表97血氧参考\raw_processed_replay_robust.csv,4498,44.97,4479,66,43.2,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\07_手表97血氧参考\replay_v2_processed.csv,4498,44.978,4479,37,24.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\08_轻触首次良好数据\processed.csv,5998,59.968,5979,58,38.57,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\08_轻触首次良好数据\raw_processed_replay_robust.csv,5998,59.97,5979,85,58.52,1,0,62.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\08_轻触首次良好数据\replay_v1_processed.csv,5998,59.968,5979,58,38.57,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\09_强按血氧空白复核\processed.csv,5999,59.974,5980,40,37.097,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\09_强按血氧空白复核\raw_processed_replay_robust.csv,5999,59.98,5980,64,56.93,1,0,87.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\09_强按血氧空白复核\replay_v2_processed.csv,5999,59.974,5980,40,37.097,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\101_60秒提示放手移手实测\quick_check_raw_processed.csv,302,3.01,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\101_60秒提示放手移手实测\raw_processed.csv,50,0.49,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\101_60秒提示放手移手实测\raw_processed_replay_robust.csv,50,0.49,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\102_后台采集不重定向检查\raw_processed.csv,501,5.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\102_后台采集不重定向检查\raw_processed_replay_robust.csv,501,5.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\103_随机放手移手实测_旧确认前\raw_processed.csv,8720,87.19,5955,58,65.75,1,0,56.0,,,"{""finger_unstable"": 1}",
+all_local_processed,testing dataset\103_随机放手移手实测_旧确认前\raw_processed_replay_robust.csv,8720,87.19,5955,49,54.42,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\104_心率确认策略回放验证\raw_processed.csv,8720,87.19,5955,58,65.75,1,0,56.0,,,"{""finger_unstable"": 1}",
+all_local_processed,testing dataset\104_心率确认策略回放验证\raw_processed_replay_robust.csv,8720,87.19,5955,49,54.42,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\105_随机放手移手实测_心率确认后\raw_processed.csv,8746,87.45,7274,56,71.17,1,0,50.0,,,"{""finger_unstable"": 1}",
+all_local_processed,testing dataset\105_随机放手移手实测_心率确认后\raw_processed_replay_robust.csv,8746,87.45,7274,51,70.51,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\106_波形预览回放\raw_processed.csv,8746,87.45,7274,56,71.17,1,0,50.0,,,"{""finger_unstable"": 1}",
+all_local_processed,testing dataset\106_波形预览回放\raw_processed_replay_robust.csv,8746,87.45,7274,51,70.51,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\107_波形同步检查\raw_processed.csv,8746,87.45,7274,56,71.17,1,0,50.0,,,"{""finger_unstable"": 1}",
+all_local_processed,testing dataset\107_波形同步检查\raw_processed_replay_robust.csv,8746,87.45,7274,51,70.51,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\108_40秒实测波形绘图\raw_processed.csv,3519,35.18,2989,45,28.26,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\108_40秒实测波形绘图\raw_processed_replay_robust.csv,3519,35.18,2989,39,28.37,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\109_波形显示条件处理\raw_processed.csv,3519,35.18,2989,45,28.26,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\109_波形显示条件处理\raw_processed_replay_robust.csv,3519,35.18,2989,39,28.37,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\10_轻触最佳稳定参考\processed.csv,6000,59.993,5981,54,38.413,1,1,48.0,48.0,48.0,"{""ok"": 1}",
+all_local_processed,testing dataset\10_轻触最佳稳定参考\raw_processed_replay_robust.csv,6000,59.99,5981,82,58.13,1,1,47.0,47.0,47.0,"{""ok"": 1}",
+all_local_processed,testing dataset\110_固定脉冲风格波形\raw_processed.csv,3519,35.18,2989,45,28.26,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\110_固定脉冲风格波形\raw_processed_replay_robust.csv,3519,35.18,2989,39,28.37,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\111_有界归一化波形\raw_processed.csv,3519,35.18,2989,45,28.26,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\111_有界归一化波形\raw_processed_replay_robust.csv,3519,35.18,2989,39,28.37,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\112_subject_A_pressure_baseline_light_stable_20260617_140429\raw_processed.csv,9001,90.0,8982,141,88.63,3,2,47.0,46.5,47.0,"{""spo2_unstable"": 1, ""ok"": 2}",
+all_local_processed,testing dataset\112_subject_A_pressure_baseline_light_stable_20260617_140429\raw_processed_replay_robust.csv,9001,90.0,8982,141,88.63,3,2,47.0,47.0,47.0,"{""spo2_unstable"": 1, ""ok"": 2}",
+all_local_processed,testing dataset\113_subject_A_pressure_baseline_light_stable_20260617_141049\raw_processed.csv,9001,90.0,8982,148,88.29,2,1,47.0,47.0,47.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\113_subject_A_pressure_baseline_light_stable_20260617_141049\raw_processed_replay_robust.csv,9001,90.0,8982,144,88.29,2,1,46.0,46.0,46.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\114_subject_B_af_high_review_20260617_144713\raw_processed.csv,9006,90.05,8987,131,88.61,2,1,49.0,51.0,51.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\114_subject_B_af_high_review_20260617_144713\raw_processed_replay_min400.csv,9006,90.05,8987,117,88.27,2,1,48.0,49.0,49.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\114_subject_B_af_high_review_20260617_144713\raw_processed_replay_min450.csv,9006,90.05,8987,117,88.31,2,1,49.0,51.0,51.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\114_subject_B_af_high_review_20260617_144713\raw_processed_replay_min500.csv,9006,90.05,8987,117,88.61,2,1,49.0,51.0,51.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\114_subject_B_af_high_review_20260617_144713\raw_processed_replay_robust.csv,9006,90.05,8987,122,88.59,2,1,46.5,47.0,47.0,"{""spo2_unstable"": 1, ""ok"": 1}",
+all_local_processed,testing dataset\11_轻触重复确认\processed.csv,6000,59.993,5981,54,36.784,1,1,48.0,48.0,48.0,"{""ok"": 1}",
+all_local_processed,testing dataset\11_轻触重复确认\raw_processed_replay_robust.csv,6000,59.99,5981,82,57.3,1,1,51.0,51.0,51.0,"{""ok"": 1}",
+all_local_processed,testing dataset\12_轻触最终检查\processed.csv,6002,60.002,5983,52,38.768,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\12_轻触最终检查\raw_processed_replay_robust.csv,6002,60.01,5983,81,58.62,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\13_无手指再放上预热\processed.csv,8997,89.953,5863,55,37.962,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\14_测量中移开手指\processed.csv,7503,74.996,5211,44,31.235,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\15_MCU_C版V3串口烟测失败\processed.csv,0,0,0,0,0,0,0,,,,{},empty_or_missing
+all_local_processed,testing dataset\16_MCU_C修复后串口烟测失败\processed.csv,0,0,0,0,0,0,0,,,,{},empty_or_missing
+all_local_processed,testing dataset\17_MCU_C重插后烟测\processed.csv,801,7.996,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\18_MCU_C对齐后串口烟测失败\processed.csv,0,0,0,0,0,0,0,,,,{},empty_or_missing
+all_local_processed,testing dataset\19_串口重插第1次\processed.csv,33,5.809,14,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\20_串口重插第2次\processed.csv,33,6.122,14,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\21_定时修复后串口重插第1次\processed.csv,445,5.081,426,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\22_定时修复后串口重插第2次\processed.csv,437,5.001,418,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\90_当前算法回放验证\verify_current_finger_light_07_processed.csv,5998,59.968,5979,58,38.57,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\90_当前算法回放验证\verify_current_finger_stable_05_processed.csv,4497,44.968,4478,34,23.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\90_当前算法回放验证\verify_current_finger_steady_04_processed.csv,4501,44.998,4302,35,22.521,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\90_当前算法回放验证\verify_current_no_finger_01_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\90_当前算法回放验证\verify_current_spo2_tune_06_processed.csv,4498,44.978,4479,37,24.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\91_血氧质量门控回放验证\verify_scoregate_finger_light_07_processed.csv,5998,59.968,5979,58,38.57,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\91_血氧质量门控回放验证\verify_scoregate_no_finger_01_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\91_血氧质量门控回放验证\verify_scoregate_spo2_tune_06_processed.csv,4498,44.978,4479,37,24.084,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide2_light_09_processed.csv,6000,59.993,5981,54,38.413,1,1,52.0,52.0,52.0,"{""ok"": 1}",
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide2_press_08_processed.csv,5999,59.974,5980,52,37.276,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide3_light_09_processed.csv,6000,59.993,5981,54,38.413,1,1,52.0,52.0,52.0,"{""ok"": 1}",
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide3_press_08_processed.csv,5999,59.974,5980,52,37.276,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide_light_09_processed.csv,6000,59.993,5981,54,38.413,1,1,52.0,52.0,52.0,"{""ok"": 1}",
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide_no_finger_01_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\92_心率范围和血氧加1回放\verify_hrwide_press_08_processed.csv,5999,59.974,5980,52,37.276,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\93_预热峰值回放验证\processed.csv,8997,89.953,5863,64,44.913,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\94_最新烧录后串口验证\processed.csv,440,4.755,421,5,3.67,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\95_当前固件烧录串口复测\run1_raw_processed.csv,0,0,0,0,0,0,0,,,,{},empty_or_missing
+all_local_processed,testing dataset\95_当前固件烧录串口复测\run1_retry_after_openocd_reset_raw_processed.csv,0,0,0,0,0,0,0,,,,{},empty_or_missing
+all_local_processed,testing dataset\96_不重新烧录串口复测\run1_raw_processed.csv,602,6.007,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\96_不重新烧录串口复测\run2_raw_processed.csv,602,6.007,536,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\97_10秒预热回放验证\01_no_finger_baseline_warmup10_raw_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\97_10秒预热回放验证\01_no_finger_baseline_warmup20_raw_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\97_10秒预热回放验证\06_strong_pressure_low_quality_spo2_blank_warmup10_raw_processed.csv,4497,44.968,4478,65,44.398,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\97_10秒预热回放验证\06_strong_pressure_low_quality_spo2_blank_warmup20_raw_processed.csv,4497,44.968,4478,65,44.398,1,0,93.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\09_strong_pressure_confirm_spo2_blank_warmup10_raw_processed.csv,5999,59.974,5980,81,57.044,1,0,87.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\09_strong_pressure_confirm_spo2_blank_warmup20_raw_processed.csv,5999,59.974,5980,81,57.044,1,0,91.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\10_light_pressure_best_stable_warmup10_raw_processed.csv,6000,59.993,5981,81,58.133,1,1,47.0,47.0,47.0,"{""ok"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\10_light_pressure_best_stable_warmup20_raw_processed.csv,6000,59.993,5981,81,58.133,1,1,50.0,50.0,50.0,"{""ok"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\11_light_pressure_confirm_repeat_warmup10_raw_processed.csv,6000,59.993,5981,81,57.303,1,1,53.0,53.0,53.0,"{""ok"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\11_light_pressure_confirm_repeat_warmup20_raw_processed.csv,6000,59.993,5981,81,57.303,1,1,53.0,53.0,53.0,"{""ok"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\12_light_pressure_final_check_warmup10_raw_processed.csv,6002,60.002,5983,80,58.617,1,1,46.0,46.0,46.0,"{""ok"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\12_light_pressure_final_check_warmup20_raw_processed.csv,6002,60.002,5983,80,58.617,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\13_no_finger_then_light_on_warmup10_raw_processed.csv,8997,89.953,5863,64,44.913,1,0,46.0,,,"{""finger_score_low"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\13_no_finger_then_light_on_warmup20_raw_processed.csv,8997,89.953,5863,64,44.913,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\97_10秒预热回放验证\14_light_on_then_no_finger_warmup10_raw_processed.csv,7503,74.996,5211,56,39.235,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\97_10秒预热回放验证\14_light_on_then_no_finger_warmup20_raw_processed.csv,7503,74.996,5211,56,39.235,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\01_no_finger_baseline_hr10_spo220_raw_processed.csv,2002,20.0,0,0,0,0,0,,,,{},not_enough_valid_peaks
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\06_strong_pressure_low_quality_spo2_blank_hr10_spo220_raw_processed.csv,4497,44.968,4478,65,44.398,0,0,,,,{},window_alignment_or_feature_fail
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\09_strong_pressure_confirm_spo2_blank_hr10_spo220_raw_processed.csv,5999,59.974,5980,81,57.044,1,0,87.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\10_light_pressure_best_stable_hr10_spo220_raw_processed.csv,6000,59.993,5981,81,58.133,1,1,47.0,47.0,47.0,"{""ok"": 1}",
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\11_light_pressure_confirm_repeat_hr10_spo220_raw_processed.csv,6000,59.993,5981,81,57.303,1,1,53.0,53.0,53.0,"{""ok"": 1}",
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\12_light_pressure_final_check_hr10_spo220_raw_processed.csv,6002,60.002,5983,80,58.617,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\13_no_finger_then_light_on_hr10_spo220_raw_processed.csv,8997,89.953,5863,64,44.913,1,0,46.0,,,"{""spo2_unstable"": 1}",
+all_local_processed,testing dataset\98_心率10秒血氧20秒回放验证\14_light_on_then_no_finger_hr10_spo220_raw_processed.csv,7503,74.996,5211,56,39.235,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\99_手指放上移开完整实测\raw_processed.csv,8715,90.036,3990,43,29.89,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\99_手指放上移开完整实测\raw_processed_replay_robust.csv,8715,87.14,3990,39,27.4,0,0,,,,{},peak_span_short
+all_local_processed,testing dataset\99_手指放上移开完整实测\replay_time_axis_check_raw_processed.csv,8715,87.14,3990,43,27.32,0,0,,,,{},peak_span_short

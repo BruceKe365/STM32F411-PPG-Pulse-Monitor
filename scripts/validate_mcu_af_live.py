@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import random
@@ -32,6 +33,14 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 import simulate_af_ppi_risk as sim
 import train_af_naive_bayes as afnb
@@ -976,8 +985,11 @@ def main() -> int:
         all_points.extend(load_public_points(args, model))
 
     config = {
+        "validator_sha256": sha256_file(Path(__file__)),
         "model": str(args.model),
+        "model_sha256": sha256_file(args.model),
         "main_c": str(args.main_c),
+        "main_c_sha256": sha256_file(args.main_c),
         "ppg_glob": args.ppg_glob,
         "sim_duration_s": args.sim_duration_s,
         "sim_runs": args.sim_runs,

@@ -1,0 +1,33 @@
+variant,source,label,total_windows,displayed_windows,rejected_windows,display_rate_pct,ge50_all_pct,ge80_all_pct,ge50_displayed_pct,ge80_displayed_pct,risk_median_displayed,risk_mean_displayed,reject_reasons
+baseline_no_gate,ALL_PUBLIC,af,88904,88904,0,100.0,95.776,95.664,95.776,95.664,100.0,95.781,{}
+baseline_no_gate,ALL_PUBLIC,mixed,4613,4613,0,100.0,25.19,23.867,25.19,23.867,0.0,25.49,{}
+baseline_no_gate,ALL_PUBLIC,normal,232138,232138,0,100.0,0.288,0.287,0.288,0.287,0.0,0.361,{}
+baseline_no_gate,ALL_PUBLIC,other,16750,16750,0,100.0,54.346,53.582,54.346,53.582,99.0,54.174,{}
+short_long_pair_gt25pct,ALL_PUBLIC,af,88904,88792,112,99.874,95.655,95.562,95.776,95.682,100.0,95.787,"{""short_long_pair"": 112}"
+short_long_pair_gt25pct,ALL_PUBLIC,mixed,4613,4563,50,98.916,24.279,23.217,24.545,23.471,0.0,24.9,"{""short_long_pair"": 50}"
+short_long_pair_gt25pct,ALL_PUBLIC,normal,232138,232111,27,99.988,0.277,0.276,0.277,0.276,0.0,0.35,"{""short_long_pair"": 27}"
+short_long_pair_gt25pct,ALL_PUBLIC,other,16750,16694,56,99.666,54.03,53.385,54.211,53.564,99.0,54.077,"{""short_long_pair"": 56}"
+short_long_pair_gt18pct,ALL_PUBLIC,af,88904,88388,516,99.42,95.214,95.158,95.77,95.713,100.0,95.794,"{""short_long_pair"": 516}"
+short_long_pair_gt18pct,ALL_PUBLIC,mixed,4613,4489,124,97.312,23.044,22.241,23.68,22.856,0.0,24.034,"{""short_long_pair"": 124}"
+short_long_pair_gt18pct,ALL_PUBLIC,normal,232138,231965,173,99.925,0.217,0.216,0.217,0.216,0.0,0.29,"{""short_long_pair"": 173}"
+short_long_pair_gt18pct,ALL_PUBLIC,other,16750,16506,244,98.543,52.955,52.46,53.738,53.235,99.0,53.658,"{""short_long_pair"": 244}"
+outlier_frac_gt18pct,ALL_PUBLIC,af,88904,86548,2356,97.35,93.166,93.117,95.702,95.652,100.0,95.726,"{""outlier_frac"": 2356}"
+outlier_frac_gt18pct,ALL_PUBLIC,mixed,4613,4252,361,92.174,20.204,19.814,21.919,21.496,0.0,22.246,"{""outlier_frac"": 361}"
+outlier_frac_gt18pct,ALL_PUBLIC,normal,232138,231832,306,99.868,0.193,0.192,0.193,0.192,0.0,0.265,"{""outlier_frac"": 306}"
+outlier_frac_gt18pct,ALL_PUBLIC,other,16750,15572,1178,92.967,47.564,47.212,51.162,50.783,95.0,51.101,"{""outlier_frac"": 1178}"
+outlier_frac_gt12pct,ALL_PUBLIC,af,88904,80919,7985,91.018,86.857,86.824,95.428,95.392,100.0,95.459,"{""outlier_frac"": 7985}"
+outlier_frac_gt12pct,ALL_PUBLIC,mixed,4613,4035,578,87.47,16.93,16.735,19.356,19.133,0.0,19.67,"{""outlier_frac"": 578}"
+outlier_frac_gt12pct,ALL_PUBLIC,normal,232138,231331,807,99.652,0.123,0.123,0.123,0.123,0.0,0.19,"{""outlier_frac"": 807}"
+outlier_frac_gt12pct,ALL_PUBLIC,other,16750,13422,3328,80.131,34.848,34.699,43.488,43.302,0.0,43.54,"{""outlier_frac"": 3328}"
+artifact_mild,ALL_PUBLIC,af,88904,86228,2676,96.99,92.8,92.751,95.68,95.629,100.0,95.706,"{""outlier_frac"": 955, ""alternating_pair"": 1693, ""short_long_pair"": 28}"
+artifact_mild,ALL_PUBLIC,mixed,4613,4223,390,91.546,19.467,19.142,21.265,20.909,0.0,21.614,"{""outlier_frac"": 261, ""alternating_pair"": 112, ""short_long_pair"": 17}"
+artifact_mild,ALL_PUBLIC,normal,232138,231677,461,99.801,0.145,0.145,0.145,0.145,0.0,0.217,"{""outlier_frac"": 138, ""alternating_pair"": 320, ""short_long_pair"": 3}"
+artifact_mild,ALL_PUBLIC,other,16750,15788,962,94.257,48.872,48.585,51.85,51.545,98.0,51.828,"{""outlier_frac"": 485, ""alternating_pair"": 460, ""short_long_pair"": 17}"
+artifact_medium,ALL_PUBLIC,af,88904,82276,6628,92.545,88.374,88.349,95.493,95.466,100.0,95.53,"{""outlier_frac"": 3589, ""alternating_pair"": 2914, ""short_long_pair"": 125}"
+artifact_medium,ALL_PUBLIC,mixed,4613,4052,561,87.839,16.887,16.779,19.225,19.102,0.0,19.573,"{""outlier_frac"": 430, ""alternating_pair"": 102, ""short_long_pair"": 29}"
+artifact_medium,ALL_PUBLIC,normal,232138,231293,845,99.636,0.093,0.093,0.093,0.093,0.0,0.161,"{""outlier_frac"": 431, ""alternating_pair"": 369, ""short_long_pair"": 45}"
+artifact_medium,ALL_PUBLIC,other,16750,14284,2466,85.278,40.096,40.018,47.018,46.927,0.0,47.095,"{""outlier_frac"": 1727, ""alternating_pair"": 683, ""short_long_pair"": 56}"
+artifact_strict,ALL_PUBLIC,af,88904,73054,15850,82.172,78.022,78.003,94.95,94.927,100.0,94.995,"{""outlier_frac"": 11492, ""alternating_pair"": 4013, ""short_long_pair"": 345}"
+artifact_strict,ALL_PUBLIC,mixed,4613,3816,797,82.723,13.44,13.397,16.247,16.195,0.0,16.606,"{""outlier_frac"": 694, ""short_long_pair"": 39, ""alternating_pair"": 64}"
+artifact_strict,ALL_PUBLIC,normal,232138,230192,1946,99.162,0.066,0.066,0.066,0.066,0.0,0.122,"{""outlier_frac"": 1239, ""alternating_pair"": 607, ""short_long_pair"": 100}"
+artifact_strict,ALL_PUBLIC,other,16750,11594,5156,69.218,24.424,24.418,35.285,35.277,0.0,35.463,"{""outlier_frac"": 4476, ""alternating_pair"": 600, ""short_long_pair"": 80}"

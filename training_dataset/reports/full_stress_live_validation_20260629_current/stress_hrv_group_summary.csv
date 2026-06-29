@@ -1,0 +1,2 @@
+group,files,windows,displayed_windows,display_rate_pct,raw_median,raw_max,display_median,display_max,normal_or_lower_pct,medium_or_high_pct,reason_counts
+all_local_processed,130,52,25,48.077,48.0,93.0,48.0,53.0,100.0,0.0,"{""spo2_unstable"": 21, ""finger_unstable"": 5, ""ok"": 25, ""finger_score_low"": 1}"

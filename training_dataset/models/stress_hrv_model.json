@@ -20,54 +20,54 @@
     "1": "stress"
   },
   "scaler_mean": [
-    78.1634016028495,
-    78.68242212025177,
-    782.1883878168254,
-    199.52416970061014,
-    248.7957348158994,
-    250.4485350653458,
-    80.07597334222459,
-    61.74002630686933,
-    0.2593379712618624,
-    118.33885240427426,
-    284.58231300089045,
-    518.6960847061442,
-    0.14316685416610664
+    52.060672195547795,
+    78.63827690484322,
+    784.0966979109635,
+    196.58820782039146,
+    246.7796371104548,
+    249.25161851270445,
+    80.18504776900474,
+    61.88703275880951,
+    0.2554697661661413,
+    121.5353557398516,
+    285.2193365342645,
+    504.32637221737235,
+    0.14074352430232057
   ],
   "scaler_scale": [
-    13.045762177042187,
-    12.944551764645775,
-    122.07363000143222,
-    74.11240506239969,
-    98.57542334769829,
-    99.29883761289544,
-    15.120519173862872,
-    20.87687531443662,
-    0.09742544152444907,
-    79.15927881894058,
-    144.17436097341346,
-    207.06571242796616,
-    0.10408446952504631
+    9.025995885807085,
+    13.357093736276761,
+    127.35208586810563,
+    78.82500902168682,
+    106.34302836166259,
+    107.543794247164,
+    15.73020208883547,
+    21.854104163535563,
+    0.10312802119060722,
+    83.82589332736728,
+    153.02807778805288,
+    219.65464847924457,
+    0.10897514919602064
   ],
   "coef": [
-    -0.14186110786857653,
-    3.2654060565733767,
-    -0.7706127672703,
-    3.903254307825424,
-    -0.025520606129145744,
-    0.06067799762859292,
-    1.327811174338589,
-    -1.1102607605236658,
-    -1.62663860089077,
-    0.1386689295906124,
-    1.0292609184999002,
-    0.5556018513952633,
-    -1.7292718113954262
+    -0.4634133494101246,
+    3.2994444885183607,
+    -0.5744886457488178,
+    3.625207993218073,
+    -0.12256323964733425,
+    0.0074385468148689335,
+    0.9539660470257366,
+    -0.8586248787024421,
+    -1.4359304563884183,
+    0.2700931311607817,
+    0.7042020753079967,
+    0.5918775999341027,
+    -1.5119053551662693
   ],
-  "intercept": -1.487949622133821,
+  "intercept": -1.2898824336184687,
   "index_calibration": {
-    "prob_nonstress_median": 0.06719434475665409,
-    "prob_stress_median": 0.8950332907668177,
+    "prob_nonstress_median": 0.09726477086909993,
+    "prob_stress_median": 0.8678105175139859,
     "index_nonstress_target": 45.0,
     "index_stress_target": 82.0,
     "display_index_bias": 5.0,
@@ -77,18 +77,18 @@
   "metadata": {
     "source_dataset": "WESAD",
     "signal": "bvp",
-    "window_s": 60.0,
+    "window_s": 40.0,
     "step_s": 10.0,
-    "min_intervals": 45,
+    "min_intervals": 28,
     "label_purity": 0.8,
     "exclude_amusement": false,
     "seed": 411,
-    "train_windows": 2246,
+    "train_windows": 2291,
     "feature_note": "PPI/HRV interval features only; no ECG/PPG morphology, EDA, respiration, or temperature.",
     "display_note": "1-29 relaxed, 30-59 normal, 60-79 medium, 80-99 high; invalid windows should display --.",
-    "all_windows": 3066,
-    "test_windows": 820,
-    "input_digest_sha256": "543824e92336a01c29e0c39854161730962a9ebb966348388344f4ca7deb1078",
+    "all_windows": 3133,
+    "test_windows": 842,
+    "input_digest_sha256": "dec035d1a3a380623b5c4b1de9420a3367a64a383e0509b96b637a3e66b27d0c",
     "train_subjects": [
       "S10",
       "S11",
@@ -112,250 +112,250 @@
   "validation": {
     "wesad_all": {
       "name": "wesad_all",
-      "count": 3066,
+      "count": 3133,
       "class_counts": {
-        "0": 2177,
-        "1": 889
+        "0": 2225,
+        "1": 908
       },
       "index_threshold_for_stress": 60,
       "confusion": {
-        "tp": 848,
-        "fp": 620,
-        "tn": 1557,
-        "fn": 41
+        "tp": 858,
+        "fp": 684,
+        "tn": 1541,
+        "fn": 50
       },
-      "accuracy": 0.7844,
-      "precision": 0.5777,
-      "recall": 0.9539,
-      "specificity": 0.7152,
-      "f1": 0.7196,
-      "auc": 0.9412,
+      "accuracy": 0.7657,
+      "precision": 0.5564,
+      "recall": 0.9449,
+      "specificity": 0.6926,
+      "f1": 0.7004,
+      "auc": 0.9267,
       "stress_index_all": {
-        "count": 3066,
-        "min": 47.0,
-        "p25": 48.0,
-        "median": 58.0,
-        "mean": 63.93,
+        "count": 3133,
+        "min": 45.0,
+        "p25": 47.0,
+        "median": 59.0,
+        "mean": 63.942,
         "p75": 81.0,
-        "max": 92.0
+        "max": 93.0
       },
       "stress_index_nonstress": {
-        "count": 2177,
-        "min": 47.0,
-        "p25": 47.0,
+        "count": 2225,
+        "min": 45.0,
+        "p25": 46.0,
         "median": 50.0,
-        "mean": 56.072,
-        "p75": 62.0,
-        "max": 92.0
+        "mean": 56.147,
+        "p75": 64.0,
+        "max": 93.0
       },
       "stress_index_stress": {
-        "count": 889,
-        "min": 48.0,
-        "p25": 80.0,
+        "count": 908,
+        "min": 46.0,
+        "p25": 79.0,
         "median": 87.0,
-        "mean": 83.172,
-        "p75": 90.0,
-        "max": 92.0
+        "mean": 83.043,
+        "p75": 91.0,
+        "max": 93.0
       },
       "stress_index_by_state": {
         "amusement": {
-          "count": 475,
-          "min": 47.0,
-          "p25": 48.0,
-          "median": 54.0,
-          "mean": 60.051,
+          "count": 501,
+          "min": 45.0,
+          "p25": 46.0,
+          "median": 56.0,
+          "mean": 59.866,
           "p75": 72.0,
-          "max": 92.0
+          "max": 93.0
         },
         "baseline": {
-          "count": 1702,
-          "min": 47.0,
-          "p25": 47.0,
-          "median": 50.0,
-          "mean": 54.962,
-          "p75": 59.75,
-          "max": 91.0
+          "count": 1724,
+          "min": 45.0,
+          "p25": 46.0,
+          "median": 49.0,
+          "mean": 55.066,
+          "p75": 61.0,
+          "max": 93.0
         },
         "stress": {
-          "count": 889,
-          "min": 48.0,
-          "p25": 80.0,
+          "count": 908,
+          "min": 46.0,
+          "p25": 79.0,
           "median": 87.0,
-          "mean": 83.172,
-          "p75": 90.0,
-          "max": 92.0
+          "mean": 83.043,
+          "p75": 91.0,
+          "max": 93.0
         }
       }
     },
     "wesad_train_by_subject": {
       "name": "wesad_train_by_subject",
-      "count": 2246,
+      "count": 2291,
       "class_counts": {
-        "0": 1614,
-        "1": 632
+        "0": 1645,
+        "1": 646
       },
       "index_threshold_for_stress": 60,
       "confusion": {
-        "tp": 606,
-        "fp": 434,
-        "tn": 1180,
-        "fn": 26
+        "tp": 615,
+        "fp": 485,
+        "tn": 1160,
+        "fn": 31
       },
-      "accuracy": 0.7952,
-      "precision": 0.5827,
-      "recall": 0.9589,
-      "specificity": 0.7311,
-      "f1": 0.7249,
-      "auc": 0.9454,
+      "accuracy": 0.7748,
+      "precision": 0.5591,
+      "recall": 0.952,
+      "specificity": 0.7052,
+      "f1": 0.7045,
+      "auc": 0.9307,
       "stress_index_all": {
-        "count": 2246,
-        "min": 47.0,
-        "p25": 48.0,
-        "median": 57.0,
-        "mean": 63.363,
+        "count": 2291,
+        "min": 45.0,
+        "p25": 47.0,
+        "median": 58.0,
+        "mean": 63.444,
         "p75": 80.0,
-        "max": 92.0
+        "max": 93.0
       },
       "stress_index_nonstress": {
-        "count": 1614,
-        "min": 47.0,
-        "p25": 47.0,
+        "count": 1645,
+        "min": 45.0,
+        "p25": 46.0,
         "median": 50.0,
-        "mean": 55.644,
-        "p75": 61.0,
-        "max": 92.0
+        "mean": 55.78,
+        "p75": 63.0,
+        "max": 93.0
       },
       "stress_index_stress": {
-        "count": 632,
-        "min": 48.0,
-        "p25": 79.0,
+        "count": 646,
+        "min": 46.0,
+        "p25": 78.0,
         "median": 87.0,
-        "mean": 83.074,
-        "p75": 90.0,
-        "max": 92.0
+        "mean": 82.961,
+        "p75": 91.0,
+        "max": 93.0
       },
       "stress_index_by_state": {
         "amusement": {
-          "count": 367,
-          "min": 47.0,
-          "p25": 48.0,
-          "median": 54.0,
-          "mean": 59.665,
-          "p75": 71.5,
-          "max": 92.0
+          "count": 380,
+          "min": 45.0,
+          "p25": 47.0,
+          "median": 55.5,
+          "mean": 59.547,
+          "p75": 71.0,
+          "max": 93.0
         },
         "baseline": {
-          "count": 1247,
-          "min": 47.0,
-          "p25": 47.0,
-          "median": 50.0,
-          "mean": 54.461,
-          "p75": 58.0,
-          "max": 90.0
+          "count": 1265,
+          "min": 45.0,
+          "p25": 46.0,
+          "median": 49.0,
+          "mean": 54.648,
+          "p75": 60.0,
+          "max": 92.0
         },
         "stress": {
-          "count": 632,
-          "min": 48.0,
-          "p25": 79.0,
+          "count": 646,
+          "min": 46.0,
+          "p25": 78.0,
           "median": 87.0,
-          "mean": 83.074,
-          "p75": 90.0,
-          "max": 92.0
+          "mean": 82.961,
+          "p75": 91.0,
+          "max": 93.0
         }
       }
     },
     "wesad_test_by_subject": {
       "name": "wesad_test_by_subject",
-      "count": 820,
+      "count": 842,
       "class_counts": {
-        "0": 563,
-        "1": 257
+        "0": 580,
+        "1": 262
       },
       "index_threshold_for_stress": 60,
       "confusion": {
-        "tp": 242,
-        "fp": 186,
-        "tn": 377,
-        "fn": 15
+        "tp": 243,
+        "fp": 199,
+        "tn": 381,
+        "fn": 19
       },
-      "accuracy": 0.7549,
-      "precision": 0.5654,
-      "recall": 0.9416,
-      "specificity": 0.6696,
-      "f1": 0.7066,
-      "auc": 0.9293,
+      "accuracy": 0.7411,
+      "precision": 0.5498,
+      "recall": 0.9275,
+      "specificity": 0.6569,
+      "f1": 0.6903,
+      "auc": 0.9157,
       "stress_index_all": {
-        "count": 820,
-        "min": 47.0,
-        "p25": 48.0,
+        "count": 842,
+        "min": 45.0,
+        "p25": 47.25,
         "median": 62.0,
-        "mean": 65.483,
-        "p75": 83.0,
-        "max": 92.0
+        "mean": 65.296,
+        "p75": 84.0,
+        "max": 93.0
       },
       "stress_index_nonstress": {
-        "count": 563,
-        "min": 47.0,
-        "p25": 47.0,
-        "median": 52.0,
-        "mean": 57.298,
-        "p75": 65.5,
-        "max": 91.0
+        "count": 580,
+        "min": 45.0,
+        "p25": 46.0,
+        "median": 51.0,
+        "mean": 57.188,
+        "p75": 66.0,
+        "max": 93.0
       },
       "stress_index_stress": {
-        "count": 257,
-        "min": 49.0,
+        "count": 262,
+        "min": 46.0,
         "p25": 81.0,
         "median": 87.0,
-        "mean": 83.412,
-        "p75": 90.0,
-        "max": 92.0
+        "mean": 83.244,
+        "p75": 91.0,
+        "max": 93.0
       },
       "stress_index_by_state": {
         "amusement": {
-          "count": 108,
-          "min": 47.0,
-          "p25": 47.0,
-          "median": 55.0,
-          "mean": 61.361,
-          "p75": 75.25,
-          "max": 91.0
+          "count": 121,
+          "min": 45.0,
+          "p25": 45.0,
+          "median": 57.0,
+          "mean": 60.868,
+          "p75": 75.0,
+          "max": 92.0
         },
         "baseline": {
-          "count": 455,
-          "min": 47.0,
-          "p25": 47.0,
+          "count": 459,
+          "min": 45.0,
+          "p25": 46.0,
           "median": 50.0,
-          "mean": 56.334,
-          "p75": 64.0,
-          "max": 91.0
+          "mean": 56.218,
+          "p75": 65.0,
+          "max": 93.0
         },
         "stress": {
-          "count": 257,
-          "min": 49.0,
+          "count": 262,
+          "min": 46.0,
           "p25": 81.0,
           "median": 87.0,
-          "mean": 83.412,
-          "p75": 90.0,
-          "max": 92.0
+          "mean": 83.244,
+          "p75": 91.0,
+          "max": 93.0
         }
       }
     },
     "local_ppg_normal_smoke": {
-      "files": 3,
-      "total_windows": 0,
+      "files": 130,
+      "total_windows": 152,
       "stress_index": {
-        "count": 0,
-        "min": null,
-        "p25": null,
-        "median": null,
-        "mean": null,
-        "p75": null,
-        "max": null
+        "count": 152,
+        "min": 46.0,
+        "p25": 48.0,
+        "median": 61.0,
+        "mean": 65.993,
+        "p75": 86.25,
+        "max": 93.0
       },
       "file_summaries": [
         {
-          "file": "testing dataset\\10_light_pressure_best_stable\\processed.csv",
+          "file": "testing dataset\\00_串口烟测与原始数据检查\\ppg_raw_repeat1_processed.csv",
           "windows": 0,
           "stress_index": {
             "count": 0,
@@ -368,7 +368,7 @@
           }
         },
         {
-          "file": "testing dataset\\11_light_pressure_confirm_repeat\\processed.csv",
+          "file": "testing dataset\\00_串口烟测与原始数据检查\\ppg_raw_repeat2_processed.csv",
           "windows": 0,
           "stress_index": {
             "count": 0,
@@ -381,7 +381,1658 @@
           }
         },
         {
-          "file": "testing dataset\\12_light_pressure_final_check\\processed.csv",
+          "file": "testing dataset\\01_无手指基线\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\01_无手指基线\\replay_v2_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\01_无手指基线\\replay_v3_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\02_手指稳定初测\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\02_手指稳定初测\\replay_v2_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\03_手指稳定心率调参\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 85.0,
+            "p25": 85.0,
+            "median": 85.0,
+            "mean": 85.0,
+            "p75": 85.0,
+            "max": 85.0
+          }
+        },
+        {
+          "file": "testing dataset\\03_手指稳定心率调参\\replay_min550_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 77.0,
+            "p25": 77.0,
+            "median": 77.0,
+            "mean": 77.0,
+            "p75": 77.0,
+            "max": 77.0
+          }
+        },
+        {
+          "file": "testing dataset\\03_手指稳定心率调参\\replay_v3_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 68.0,
+            "p25": 68.0,
+            "median": 68.0,
+            "mean": 68.0,
+            "p75": 68.0,
+            "max": 68.0
+          }
+        },
+        {
+          "file": "testing dataset\\03_手指稳定心率调参\\replay_v4_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\04_延迟接触预热测试\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\04_延迟接触预热测试\\replay_v5_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\04_延迟接触预热测试\\replay_v6_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\04_延迟接触预热测试\\replay_w20_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\05_稳定心率良好参考\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\05_稳定心率良好参考\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\05_稳定心率良好参考\\replay_v2_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\05_稳定心率良好参考\\replay_v3_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\raw_processed_replay_robust.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 91.0,
+            "p25": 91.0,
+            "median": 91.0,
+            "mean": 91.0,
+            "p75": 91.0,
+            "max": 91.0
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\replay_v2_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\replay_v3_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\replay_v4_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\06_强按低质量血氧空白\\replay_v5_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\07_手表97血氧参考\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\07_手表97血氧参考\\raw_processed_replay_robust.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 52.0,
+            "p25": 52.0,
+            "median": 52.0,
+            "mean": 52.0,
+            "p75": 52.0,
+            "max": 52.0
+          }
+        },
+        {
+          "file": "testing dataset\\07_手表97血氧参考\\replay_v2_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\08_轻触首次良好数据\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\08_轻触首次良好数据\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 47.0,
+            "p25": 48.25,
+            "median": 49.5,
+            "mean": 49.5,
+            "p75": 50.75,
+            "max": 52.0
+          }
+        },
+        {
+          "file": "testing dataset\\08_轻触首次良好数据\\replay_v1_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\09_强按血氧空白复核\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\09_强按血氧空白复核\\raw_processed_replay_robust.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\09_强按血氧空白复核\\replay_v2_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\101_60秒提示放手移手实测\\quick_check_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\101_60秒提示放手移手实测\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\101_60秒提示放手移手实测\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\102_后台采集不重定向检查\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\102_后台采集不重定向检查\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\103_随机放手移手实测_旧确认前\\raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 77.0,
+            "p25": 79.5,
+            "median": 82.0,
+            "mean": 80.667,
+            "p75": 82.5,
+            "max": 83.0
+          }
+        },
+        {
+          "file": "testing dataset\\103_随机放手移手实测_旧确认前\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 73.0,
+            "p25": 73.5,
+            "median": 74.0,
+            "mean": 74.0,
+            "p75": 74.5,
+            "max": 75.0
+          }
+        },
+        {
+          "file": "testing dataset\\104_心率确认策略回放验证\\raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 77.0,
+            "p25": 79.5,
+            "median": 82.0,
+            "mean": 80.667,
+            "p75": 82.5,
+            "max": 83.0
+          }
+        },
+        {
+          "file": "testing dataset\\104_心率确认策略回放验证\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 73.0,
+            "p25": 73.5,
+            "median": 74.0,
+            "mean": 74.0,
+            "p75": 74.5,
+            "max": 75.0
+          }
+        },
+        {
+          "file": "testing dataset\\105_随机放手移手实测_心率确认后\\raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 70.0,
+            "p25": 71.0,
+            "median": 72.0,
+            "mean": 72.0,
+            "p75": 73.0,
+            "max": 74.0
+          }
+        },
+        {
+          "file": "testing dataset\\105_随机放手移手实测_心率确认后\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 66.0,
+            "p25": 67.5,
+            "median": 69.0,
+            "mean": 69.0,
+            "p75": 70.5,
+            "max": 72.0
+          }
+        },
+        {
+          "file": "testing dataset\\106_波形预览回放\\raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 70.0,
+            "p25": 71.0,
+            "median": 72.0,
+            "mean": 72.0,
+            "p75": 73.0,
+            "max": 74.0
+          }
+        },
+        {
+          "file": "testing dataset\\106_波形预览回放\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 66.0,
+            "p25": 67.5,
+            "median": 69.0,
+            "mean": 69.0,
+            "p75": 70.5,
+            "max": 72.0
+          }
+        },
+        {
+          "file": "testing dataset\\107_波形同步检查\\raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 70.0,
+            "p25": 71.0,
+            "median": 72.0,
+            "mean": 72.0,
+            "p75": 73.0,
+            "max": 74.0
+          }
+        },
+        {
+          "file": "testing dataset\\107_波形同步检查\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 66.0,
+            "p25": 67.5,
+            "median": 69.0,
+            "mean": 69.0,
+            "p75": 70.5,
+            "max": 72.0
+          }
+        },
+        {
+          "file": "testing dataset\\108_40秒实测波形绘图\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\108_40秒实测波形绘图\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\109_波形显示条件处理\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\109_波形显示条件处理\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\10_轻触最佳稳定参考\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 58.0,
+            "p25": 58.0,
+            "median": 58.0,
+            "mean": 58.0,
+            "p75": 58.0,
+            "max": 58.0
+          }
+        },
+        {
+          "file": "testing dataset\\10_轻触最佳稳定参考\\raw_processed_replay_robust.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 48.0,
+            "p25": 48.0,
+            "median": 48.0,
+            "mean": 51.667,
+            "p75": 53.5,
+            "max": 59.0
+          }
+        },
+        {
+          "file": "testing dataset\\110_固定脉冲风格波形\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\110_固定脉冲风格波形\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\111_有界归一化波形\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\111_有界归一化波形\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\112_subject_A_pressure_baseline_light_stable_20260617_140429\\raw_processed.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 47.0,
+            "p25": 48.25,
+            "median": 49.5,
+            "mean": 52.667,
+            "p75": 50.75,
+            "max": 71.0
+          }
+        },
+        {
+          "file": "testing dataset\\112_subject_A_pressure_baseline_light_stable_20260617_140429\\raw_processed_replay_robust.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 47.0,
+            "p25": 47.25,
+            "median": 48.0,
+            "mean": 49.667,
+            "p75": 48.75,
+            "max": 59.0
+          }
+        },
+        {
+          "file": "testing dataset\\113_subject_A_pressure_baseline_light_stable_20260617_141049\\raw_processed.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 46.0,
+            "p25": 47.25,
+            "median": 48.5,
+            "mean": 49.0,
+            "p75": 51.25,
+            "max": 52.0
+          }
+        },
+        {
+          "file": "testing dataset\\113_subject_A_pressure_baseline_light_stable_20260617_141049\\raw_processed_replay_robust.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 46.0,
+            "p75": 46.0,
+            "max": 46.0
+          }
+        },
+        {
+          "file": "testing dataset\\114_subject_B_af_high_review_20260617_144713\\raw_processed.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 57.0,
+            "p25": 64.75,
+            "median": 80.5,
+            "mean": 77.5,
+            "p75": 91.75,
+            "max": 92.0
+          }
+        },
+        {
+          "file": "testing dataset\\114_subject_B_af_high_review_20260617_144713\\raw_processed_replay_min400.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 47.0,
+            "p25": 50.5,
+            "median": 75.5,
+            "mean": 71.167,
+            "p75": 90.75,
+            "max": 91.0
+          }
+        },
+        {
+          "file": "testing dataset\\114_subject_B_af_high_review_20260617_144713\\raw_processed_replay_min450.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 47.0,
+            "p25": 50.5,
+            "median": 76.0,
+            "mean": 71.667,
+            "p75": 91.75,
+            "max": 92.0
+          }
+        },
+        {
+          "file": "testing dataset\\114_subject_B_af_high_review_20260617_144713\\raw_processed_replay_min500.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 47.0,
+            "p25": 50.5,
+            "median": 76.0,
+            "mean": 71.667,
+            "p75": 91.75,
+            "max": 92.0
+          }
+        },
+        {
+          "file": "testing dataset\\114_subject_B_af_high_review_20260617_144713\\raw_processed_replay_robust.csv",
+          "windows": 6,
+          "stress_index": {
+            "count": 6,
+            "min": 46.0,
+            "p25": 46.25,
+            "median": 54.5,
+            "mean": 57.167,
+            "p75": 68.0,
+            "max": 72.0
+          }
+        },
+        {
+          "file": "testing dataset\\11_轻触重复确认\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\11_轻触重复确认\\raw_processed_replay_robust.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 51.0,
+            "p25": 51.25,
+            "median": 51.5,
+            "mean": 51.5,
+            "p75": 51.75,
+            "max": 52.0
+          }
+        },
+        {
+          "file": "testing dataset\\12_轻触最终检查\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 49.0,
+            "p25": 49.0,
+            "median": 49.0,
+            "mean": 49.0,
+            "p75": 49.0,
+            "max": 49.0
+          }
+        },
+        {
+          "file": "testing dataset\\12_轻触最终检查\\raw_processed_replay_robust.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 46.0,
+            "p75": 46.0,
+            "max": 46.0
+          }
+        },
+        {
+          "file": "testing dataset\\13_无手指再放上预热\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\14_测量中移开手指\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\15_MCU_C版V3串口烟测失败\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\16_MCU_C修复后串口烟测失败\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\17_MCU_C重插后烟测\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\18_MCU_C对齐后串口烟测失败\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\19_串口重插第1次\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\20_串口重插第2次\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\21_定时修复后串口重插第1次\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\22_定时修复后串口重插第2次\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\90_当前算法回放验证\\verify_current_finger_light_07_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\90_当前算法回放验证\\verify_current_finger_stable_05_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\90_当前算法回放验证\\verify_current_finger_steady_04_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\90_当前算法回放验证\\verify_current_no_finger_01_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\90_当前算法回放验证\\verify_current_spo2_tune_06_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\91_血氧质量门控回放验证\\verify_scoregate_finger_light_07_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\91_血氧质量门控回放验证\\verify_scoregate_no_finger_01_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\91_血氧质量门控回放验证\\verify_scoregate_spo2_tune_06_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide2_light_09_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 62.0,
+            "p25": 62.0,
+            "median": 62.0,
+            "mean": 62.0,
+            "p75": 62.0,
+            "max": 62.0
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide2_press_08_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide3_light_09_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 62.0,
+            "p25": 62.0,
+            "median": 62.0,
+            "mean": 62.0,
+            "p75": 62.0,
+            "max": 62.0
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide3_press_08_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide_light_09_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 62.0,
+            "p25": 62.0,
+            "median": 62.0,
+            "mean": 62.0,
+            "p75": 62.0,
+            "max": 62.0
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide_no_finger_01_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\92_心率范围和血氧加1回放\\verify_hrwide_press_08_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\93_预热峰值回放验证\\processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 47.0,
+            "p25": 47.0,
+            "median": 47.0,
+            "mean": 47.0,
+            "p75": 47.0,
+            "max": 47.0
+          }
+        },
+        {
+          "file": "testing dataset\\94_最新烧录后串口验证\\processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\95_当前固件烧录串口复测\\run1_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\95_当前固件烧录串口复测\\run1_retry_after_openocd_reset_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\96_不重新烧录串口复测\\run1_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\96_不重新烧录串口复测\\run2_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\01_no_finger_baseline_warmup10_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\01_no_finger_baseline_warmup20_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\06_strong_pressure_low_quality_spo2_blank_warmup10_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\06_strong_pressure_low_quality_spo2_blank_warmup20_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\09_strong_pressure_confirm_spo2_blank_warmup10_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\09_strong_pressure_confirm_spo2_blank_warmup20_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\10_light_pressure_best_stable_warmup10_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 48.0,
+            "p25": 54.0,
+            "median": 60.0,
+            "mean": 61.333,
+            "p75": 68.0,
+            "max": 76.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\10_light_pressure_best_stable_warmup20_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 48.0,
+            "p25": 54.0,
+            "median": 60.0,
+            "mean": 61.333,
+            "p75": 68.0,
+            "max": 76.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\11_light_pressure_confirm_repeat_warmup10_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 53.0,
+            "p25": 54.75,
+            "median": 56.5,
+            "mean": 56.5,
+            "p75": 58.25,
+            "max": 60.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\11_light_pressure_confirm_repeat_warmup20_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 53.0,
+            "p25": 54.75,
+            "median": 56.5,
+            "mean": 56.5,
+            "p75": 58.25,
+            "max": 60.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\12_light_pressure_final_check_warmup10_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 47.0,
+            "p75": 47.5,
+            "max": 49.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\12_light_pressure_final_check_warmup20_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 47.0,
+            "p75": 47.5,
+            "max": 49.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\13_no_finger_then_light_on_warmup10_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 47.0,
+            "p25": 47.0,
+            "median": 47.0,
+            "mean": 47.0,
+            "p75": 47.0,
+            "max": 47.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\13_no_finger_then_light_on_warmup20_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 47.0,
+            "p25": 47.0,
+            "median": 47.0,
+            "mean": 47.0,
+            "p75": 47.0,
+            "max": 47.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\14_light_on_then_no_finger_warmup10_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 46.0,
+            "p75": 46.0,
+            "max": 46.0
+          }
+        },
+        {
+          "file": "testing dataset\\97_10秒预热回放验证\\14_light_on_then_no_finger_warmup20_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 46.0,
+            "p75": 46.0,
+            "max": 46.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\01_no_finger_baseline_hr10_spo220_raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\06_strong_pressure_low_quality_spo2_blank_hr10_spo220_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\09_strong_pressure_confirm_spo2_blank_hr10_spo220_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 93.0,
+            "p25": 93.0,
+            "median": 93.0,
+            "mean": 93.0,
+            "p75": 93.0,
+            "max": 93.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\10_light_pressure_best_stable_hr10_spo220_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 48.0,
+            "p25": 54.0,
+            "median": 60.0,
+            "mean": 61.333,
+            "p75": 68.0,
+            "max": 76.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\11_light_pressure_confirm_repeat_hr10_spo220_raw_processed.csv",
+          "windows": 2,
+          "stress_index": {
+            "count": 2,
+            "min": 53.0,
+            "p25": 54.75,
+            "median": 56.5,
+            "mean": 56.5,
+            "p75": 58.25,
+            "max": 60.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\12_light_pressure_final_check_hr10_spo220_raw_processed.csv",
+          "windows": 3,
+          "stress_index": {
+            "count": 3,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 47.0,
+            "p75": 47.5,
+            "max": 49.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\13_no_finger_then_light_on_hr10_spo220_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 47.0,
+            "p25": 47.0,
+            "median": 47.0,
+            "mean": 47.0,
+            "p75": 47.0,
+            "max": 47.0
+          }
+        },
+        {
+          "file": "testing dataset\\98_心率10秒血氧20秒回放验证\\14_light_on_then_no_finger_hr10_spo220_raw_processed.csv",
+          "windows": 1,
+          "stress_index": {
+            "count": 1,
+            "min": 46.0,
+            "p25": 46.0,
+            "median": 46.0,
+            "mean": 46.0,
+            "p75": 46.0,
+            "max": 46.0
+          }
+        },
+        {
+          "file": "testing dataset\\99_手指放上移开完整实测\\raw_processed.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\99_手指放上移开完整实测\\raw_processed_replay_robust.csv",
+          "windows": 0,
+          "stress_index": {
+            "count": 0,
+            "min": null,
+            "p25": null,
+            "median": null,
+            "mean": null,
+            "p75": null,
+            "max": null
+          }
+        },
+        {
+          "file": "testing dataset\\99_手指放上移开完整实测\\replay_time_axis_check_raw_processed.csv",
           "windows": 0,
           "stress_index": {
             "count": 0,
@@ -394,7 +2045,7 @@
           }
         }
       ],
-      "detail_csv": "training_dataset\\reports\\local_ppg_stress_index.csv"
+      "detail_csv": "training_dataset\\reports\\full_stress_train_validation_20260629_current\\reports\\local_ppg_stress_index.csv"
     }
   }
 }

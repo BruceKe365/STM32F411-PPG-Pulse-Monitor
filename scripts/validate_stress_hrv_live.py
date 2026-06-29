@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # 中文说明：
-#   电脑端复现第一版“PPG-HRV 压力指数”实时显示逻辑。
+#   电脑端按当前 MCU 参数回放“PPG-HRV 压力指数”稳态刷新窗口。
 #   它读取 scripts/train_stress_hrv_model.py 导出的模型，按本地数据分组验证：
 #   理想静息、正常扰动、强按/低质量边界，并把质量不可信窗口显示为 --。
-"""Validate local PPG-HRV stress-index behavior with grouped reports."""
+"""Validate parameter-aligned steady-state PPG-HRV stress-index windows."""
 
 from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -16,6 +17,14 @@ from pathlib import Path
 from typing import Any
 
 import train_stress_hrv_model as stress
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 DEFAULT_GROUPS: dict[str, list[str]] = {
@@ -50,6 +59,11 @@ PPI_FILTER_SLOW_MAX_HR_RATIO = 1.65
 PPI_FILTER_FAST_MIN_HR_RATIO = 0.64
 PPI_FILTER_FAST_MAX_HR_RATIO = 1.38
 PPI_ARTIFACT_FRAC_GATE = 0.20
+STRESS_HRV_WINDOW_S = 40.0
+STRESS_HRV_MIN_INTERVAL_COUNT = 28
+STRESS_HRV_FIRST_UPDATE_STEP_S = 10.0
+STRESS_HRV_REFRESH_UPDATE_STEP_S = 30.0
+STRESS_HRV_HIGH_HR_BPM = 120.0
 
 
 @dataclass
@@ -76,9 +90,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=Path, default=Path("training_dataset/reports/stress_hrv_local_validation"))
     parser.add_argument("--ppg-glob", action="append", help="Processed local PPG CSV glob to validate. Can be repeated; overrides default groups.")
     parser.add_argument("--ppg-group", default="local_ppg", help="Group label used when --ppg-glob is provided.")
-    parser.add_argument("--window-s", type=float, default=None)
-    parser.add_argument("--step-s", type=float, default=None)
-    parser.add_argument("--min-intervals", type=int, default=None)
+    parser.add_argument("--window-s", type=float, default=STRESS_HRV_WINDOW_S)
+    parser.add_argument("--step-s", type=float, default=STRESS_HRV_REFRESH_UPDATE_STEP_S)
+    parser.add_argument("--min-intervals", type=int, default=STRESS_HRV_MIN_INTERVAL_COUNT)
     parser.add_argument("--disable-quality-gate", action="store_true")
     parser.add_argument("--finger-present-gate", type=float, default=0.95)
     parser.add_argument("--spo2-valid-gate", type=float, default=0.60)
@@ -433,9 +447,17 @@ def main() -> int:
     args = parse_args()
     model = json.loads(args.model.read_text(encoding="utf-8"))
     metadata = model.get("metadata", {})
-    window_s = float(args.window_s if args.window_s is not None else metadata.get("window_s", 40.0))
-    step_s = float(args.step_s if args.step_s is not None else metadata.get("step_s", 10.0))
-    min_intervals = int(args.min_intervals if args.min_intervals is not None else metadata.get("min_intervals", 28))
+    window_s = float(args.window_s)
+    step_s = float(args.step_s)
+    min_intervals = int(args.min_intervals)
+    model_window_s = float(metadata.get("window_s", window_s))
+    model_min_intervals = int(metadata.get("min_intervals", min_intervals))
+    if model_window_s != window_s or model_min_intervals != min_intervals:
+        raise ValueError(
+            "model/runtime window mismatch: "
+            f"model={model_window_s:g}s/{model_min_intervals} PPI, "
+            f"runtime={window_s:g}s/{min_intervals} PPI"
+        )
 
     detail_rows: list[dict[str, Any]] = []
     file_rows: list[dict[str, Any]] = []
@@ -534,12 +556,20 @@ def main() -> int:
         )
 
     config = {
+        "replay_mode": "parameter_aligned_steady_state_windows",
+        "validator_sha256": sha256_file(Path(__file__)),
         "model": str(args.model),
+        "model_sha256": sha256_file(args.model),
+        "main_c": "Core/Src/main.c",
+        "main_c_sha256": sha256_file(Path("Core/Src/main.c")),
         "ppg_glob": args.ppg_glob,
         "ppg_group": args.ppg_group,
         "window_s": window_s,
-        "step_s": step_s,
+        "window_generation_step_s": step_s,
         "min_intervals": min_intervals,
+        "first_update_step_s": STRESS_HRV_FIRST_UPDATE_STEP_S,
+        "refresh_update_step_s": STRESS_HRV_REFRESH_UPDATE_STEP_S,
+        "high_hr_bpm": STRESS_HRV_HIGH_HR_BPM,
         "quality_gate_enabled": not args.disable_quality_gate,
         "finger_present_gate": args.finger_present_gate,
         "spo2_valid_gate": args.spo2_valid_gate,

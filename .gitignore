@@ -32,9 +32,9 @@ training_dataset/derived/
 
 # Historical/generated validation reports. Keep only final current reports.
 training_dataset/reports/*
-!training_dataset/reports/full_af_validation_20260617_current/
-!training_dataset/reports/full_af_validation_20260617_current/**
-!training_dataset/reports/full_stress_live_validation_20260617_current/
-!training_dataset/reports/full_stress_live_validation_20260617_current/**
-!training_dataset/reports/full_stress_train_validation_20260617_current/
-!training_dataset/reports/full_stress_train_validation_20260617_current/**
+!training_dataset/reports/full_af_validation_20260629_current/
+!training_dataset/reports/full_af_validation_20260629_current/**
+!training_dataset/reports/full_stress_live_validation_20260629_current/
+!training_dataset/reports/full_stress_live_validation_20260629_current/**
+!training_dataset/reports/full_stress_train_validation_20260629_current/
+!training_dataset/reports/full_stress_train_validation_20260629_current/**
