@@ -37,7 +37,7 @@
 
 ## 实物运行演示
 
-主屏显示 HR/SpO₂（点按单片机按键可切换显示内容），波形屏显示实时 PPG 波形。
+主屏显示 HR/SpO₂（点按单片机KEY可切换显示内容），波形屏显示实时 PPG 波形。
 
 <p align="center">
   <img src="assets/images/device-running.jpg" alt="STM32F411 脉搏测试仪实物运行状态，主屏显示 HR 和 SpO₂，波形屏显示 PPG 波形" width="720">
