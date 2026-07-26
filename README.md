@@ -35,7 +35,9 @@
 
 注意：房颤和压力相关功能是课程设计中的风险提示/指数原型，不是医学诊断工具。
 
-实物运行演示：主屏显示 HR/SpO₂，波形屏显示实时 PPG 波形。
+## 实物运行演示
+
+主屏显示 HR/SpO₂，波形屏显示实时 PPG 波形。
 
 <p align="center">
   <img src="assets/images/device-running.jpg" alt="STM32F411 脉搏测试仪实物运行状态，主屏显示 HR 和 SpO₂，波形屏显示 PPG 波形" width="720">
