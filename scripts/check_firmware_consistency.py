@@ -29,12 +29,16 @@ AF_VALIDATOR = ROOT / "scripts/validate_mcu_af_live.py"
 STRESS_VALIDATOR = ROOT / "scripts/validate_stress_hrv_live.py"
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def sha256_text_file(path: Path) -> str:
+    """Hash text artifacts independently of the checkout line-ending policy.
+
+    The report metadata was generated from LF files, while a Windows checkout
+    can transparently use CRLF.  The firmware, JSON models, and Python
+    validators are text artifacts, so normalizing line endings prevents a
+    false mismatch without hiding content changes.
+    """
+    payload = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -106,9 +110,9 @@ def main() -> int:
     }
     for key, expected in af_checks.items():
         expect(f"AF report {key}", af_report.get(key), expected)
-    expect("AF report main.c hash", af_report.get("main_c_sha256"), sha256_file(MAIN_C))
-    expect("AF report model hash", af_report.get("model_sha256"), sha256_file(AF_MODEL))
-    expect("AF report validator hash", af_report.get("validator_sha256"), sha256_file(AF_VALIDATOR))
+    expect("AF report main.c hash", af_report.get("main_c_sha256"), sha256_text_file(MAIN_C))
+    expect("AF report model hash", af_report.get("model_sha256"), sha256_text_file(AF_MODEL))
+    expect("AF report validator hash", af_report.get("validator_sha256"), sha256_text_file(AF_VALIDATOR))
     expect("English/Chinese AF JSON", AF_MODEL.read_bytes(), AF_MODEL_CN.read_bytes())
     expect("English/Chinese AF header", AF_HEADER.read_bytes(), AF_HEADER_CN.read_bytes())
 
@@ -153,9 +157,9 @@ def main() -> int:
         stress_report.get("window_generation_step_s"),
         stress_checks["refresh_update_step_s"],
     )
-    expect("Stress report main.c hash", stress_report.get("main_c_sha256"), sha256_file(MAIN_C))
-    expect("Stress report model hash", stress_report.get("model_sha256"), sha256_file(STRESS_MODEL))
-    expect("Stress report validator hash", stress_report.get("validator_sha256"), sha256_file(STRESS_VALIDATOR))
+    expect("Stress report main.c hash", stress_report.get("main_c_sha256"), sha256_text_file(MAIN_C))
+    expect("Stress report model hash", stress_report.get("model_sha256"), sha256_text_file(STRESS_MODEL))
+    expect("Stress report validator hash", stress_report.get("validator_sha256"), sha256_text_file(STRESS_VALIDATOR))
     expect("Stress model metadata window", stress_model["metadata"]["window_s"], stress_checks["window_s"])
     expect("Stress model metadata step", stress_model["metadata"]["step_s"], stress_checks["first_update_step_s"])
     expect("Stress model metadata minimum", stress_model["metadata"]["min_intervals"], stress_checks["min_intervals"])

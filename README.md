@@ -183,7 +183,7 @@ cmake --preset Debug
 cmake --build --preset Debug
 ```
 
-如果配置阶段提示找不到 `arm-none-eabi-gcc`，请将 ARM GNU Toolchain 的 `bin` 目录加入 `PATH`，重新打开终端后再执行上述命令。
+当前 CMake preset 使用 Ninja 生成器。配置前请确认同一终端中的 `arm-none-eabi-gcc --version` 和 `ninja --version` 都能正常执行；若前者找不到，请将 ARM GNU Toolchain 的 `bin` 目录加入 `PATH`，重新打开终端后再执行上述命令。
 
 如果使用 STM32CubeMX/STM32CubeIDE 插件自带 CMake，也可以把 `cmake` 替换为 `%LOCALAPPDATA%\stm32cube\bundles\cmake\4.3.1+st.1\bin\cmake.exe`。
 

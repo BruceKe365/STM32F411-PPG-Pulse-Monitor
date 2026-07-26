@@ -2,7 +2,7 @@
   "config": {
     "validator_sha256": "a05cd808cfc57bf779c9a1b2c6a5870fc4f6c0a1643e6df52185fc478241d416",
     "model": "training_dataset\\models\\af_nb_model.json",
-    "model_sha256": "0352daf9a4f1b0ea6636bbe26261277db68cfd5d475751b662aed39e65a44f3e",
+    "model_sha256": "b715d408762614efe73def70cbc30794a7fb65a5d75e33dbdc8b30a511882ce5",
     "main_c": "Core\\Src\\main.c",
     "main_c_sha256": "743a761b0bcb2240cc1c5f8a1d1c84ddcb0245bd70608a359b2a8186b57b34e1",
     "ppg_glob": "testing dataset/**/*processed*.csv",

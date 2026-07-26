@@ -3,7 +3,7 @@
     "replay_mode": "parameter_aligned_steady_state_windows",
     "validator_sha256": "5845a1c5a9458f7ef1066e128fb50485be61576b9c6e2ed71c12f062ece8c7f7",
     "model": "training_dataset\\models\\stress_hrv_model.json",
-    "model_sha256": "bc625e82c9e1d4f7748ab19d8e4e648e4b0d44903ff1015e81b8311c413cb7d6",
+    "model_sha256": "c74c63eeffb9f53606b1113276d9ec48c4bb5648314471caac07d866c369514c",
     "main_c": "Core/Src/main.c",
     "main_c_sha256": "743a761b0bcb2240cc1c5f8a1d1c84ddcb0245bd70608a359b2a8186b57b34e1",
     "ppg_glob": [
