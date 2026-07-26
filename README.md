@@ -232,4 +232,4 @@ python scripts/download_stress_training_data.py
 - `Reports/压力情绪功能详细总结.md`
 - `Reports/总体完成进度（2026.6.23定稿）.md`
 
-再次强调，AF risk 和 Stress index 都是课程设计中的端侧轻量推理原型。对外展示时建议使用“疑似房颤风险提示”“不规则心律风险提示”“HRV 压力指数原型”等保守表述。
+再次强调，AF risk 和 Stress index 都是项目设计中的端侧轻量推理原型。对外展示时建议使用“疑似房颤风险提示”“不规则心律风险提示”“HRV 压力指数原型”等保守表述。
