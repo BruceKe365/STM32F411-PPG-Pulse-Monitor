@@ -163,8 +163,9 @@ USB CDC 会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使�
 2. 用 STM32CubeMX 打开 `STM32_F411_Test.ioc`，核对 MCU、时钟、I2C、USB CDC、PB5 EXTI 和 SWD 配置。
 3. 安装 ARM GNU Toolchain、CMake/Ninja，并用 CMake 构建工程生成 `build/Debug/STM32_F411_Test.elf`。
 4. 使用 DAPLink/CMSIS-DAP 和 OpenOCD 通过 SWD 烧录。
-5. 烧录后连接 Type-C，打开 USB CDC 虚拟串口，使用 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py` 检查数据输出。
+5. 烧录后连接 Type-C，打开 USB CDC 虚拟串口，使用 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py` 检查数据输出；注意端口号请以本机设备管理器显示的端口为准。
 6. 若 Windows 下 COM 口枚举但打不开，优先重新插拔主板 Type-C，再检查供电、I2C 接线和 DAPLink 连接。
+
 
 构建命令示例：
 
@@ -186,8 +187,6 @@ OpenOCD 只用于通过 DAPLink/CMSIS-DAP 烧录和调试，不参与前面的�
 `tools/xpack-openocd-0.12.0-7/` 不随 Git 提交。新机器上需要下载 xPack OpenOCD 后放到这个路径，或把命令中的 OpenOCD 路径替换为本机已安装路径。
 
 如果主板已经由 Type-C 供电，DAPLink 的 3V3 供电脚不要再并接供电，只接 SWDIO、SWCLK、GND 等必要调试线；单片机供电与电源板供电不可同时使用，以免烧毁硬件。
-
-另外，相关文档中提及的 `COM7` 只是原开发机的示例端口。使用串口读取数据时，请以本机设备管理器显示的端口为准；若需要指定，在串口脚本后附加 `--port COMx`，并把 `COMx` 替换为实际端口号。
 
 ## Git 提交和外部数据边界
 
