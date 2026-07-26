@@ -110,17 +110,9 @@ PA0 按键循环切换 4 个显示模式：
 HR/SpO2 -> AF live -> STRESS -> AF test -> HR/SpO2
 ```
 
-当前串口输出配置在 `Core/Src/main.c`：
+USB CDC 会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使用 Python 脚本采集、回放和验证。
 
-```text
-RAW_STREAM_USB_ENABLE = 1
-DIAG_STREAM_USB_ENABLE = 0
-PPG_PROC_STREAM_USB_ENABLE = 1
-```
-
-串口会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使用 Python 脚本采集、回放和验证。
-
-对于从 Git 克隆的使用者，`Core/Src/main.c`、正式模型和 `training_dataset/reports/full_*_20260629_current/` 报告共同构成可检查的提交内基线；ELF 是由这些输入重新构建得到的本地产物，不随 Git 提交。2026-06-29 已据此完成模型与报告一致性同步：AF 使用 30 秒窗口、至少 20 个 PPI、10 秒/30 秒快慢刷新、18 bpm PPI-HR 容差和 20% 风险上跳保持；Stress 使用 40 秒窗口、至少 28 个 PPI、10 秒/30 秒刷新和 HR>120 隐藏门限；HR 显示使用 25 bpm 跳变门限和 10s 超时接受策略。正式 Stress JSON/头文件与 MCU 内嵌模型逐项一致，当前报告统一位于 `training_dataset/reports/full_*_20260629_current/`。
+当前固件、正式模型与 current 验证报告已通过一致性检查；具体参数、验证范围和维护边界见 `AI助手接手？先读我.md`、`Reports/房颤风险功能详细总结.md` 与 `Reports/压力情绪功能详细总结.md`。
 
 ## 项目目录
 
@@ -140,8 +132,8 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 | `testing dataset/` | 本地 MAX30102 采集数据、回放数据和诊断 CSV。 |
 | `training_dataset/` | 公开训练数据、AF/Stress 模型参数、验证报告和数据集说明。 |
 | `PCB板文件(epro2文件)/` | 主板和锂电池供电板 PCB 工程文件。 |
-| `tools/` | 外部工具占位说明；OpenOCD、TeX 等工具本体不提交，按 `tools/README.md` 重新下载。 |
-| `output/` | 本地生成的报告/PDF 输出目录，不随 GitHub 提交。 |
+| `tools/` | OpenOCD 等本地烧录/调试工具的说明，按 `tools/外部工具说明.md` 准备。 |
+| `output/` | 本地生成的演示和临时输出，不随 GitHub 提交。 |
 | `build/Debug/` | CMake Debug 本地构建产物目录，不随 Git 提交；clone 后需要重新构建生成 `STM32_F411_Test.elf`。 |
 | `cmake/`、`CMakeLists.txt`、`CMakePresets.json` | CMake 构建配置。 |
 
@@ -156,12 +148,10 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 | 阅读代码、文档、PCB、模型参数和最终验证结果 | 无额外下载 | 当前提交已经包含 README、AI 接手文档、Reports、PCB 工程、`training_dataset/models/` 和最终定稿验证报告。 |
 | 编译固件 | ARM GNU Toolchain、CMake/Ninja，或 VS Code STM32/CubeMX 插件环境 | `build/` 不随 Git 提交，需要本机重新生成 `build/Debug/STM32_F411_Test.elf`。 |
 | 重新打开或生成 CubeMX 工程 | STM32CubeMX 6.14.1 附近版本、STM32Cube FW_F4 V1.28.3 附近版本 | 当前仓库包含 `.ioc` 和 HAL/CMSIS 工程文件；只有重新生成工程时才需要重点核对 CubeMX 版本和用户代码段。 |
-| 烧录调试 | DAPLink/CMSIS-DAP 或 ST-Link、OpenOCD | `tools/xpack-openocd-0.12.0-7/` 不提交。可按 `tools/README.md` 放到该路径，也可以使用本机已有 OpenOCD 并修改命令路径。 |
+| 烧录调试 | DAPLink/CMSIS-DAP 或 ST-Link、OpenOCD | `tools/xpack-openocd-0.12.0-7/` 不提交。可按 `tools/外部工具说明.md` 放到该路径，也可以使用本机已有 OpenOCD 并修改命令路径。 |
 | 串口采集和实时诊断 | Python 3、`pyserial` | 使用 `python -m pip install pyserial` 安装后运行 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py`。 |
-| 重新训练 AF 模型或刷新公开 AF 数据 | 可选下载 PhysioNet AF/NSR 注释文件 | 当前提交已保留 `training_dataset/physionet/` 最小注释文件；缺失或想刷新时运行 `scripts/download_af_training_data.py`。 |
-| 重新训练 Stress 模型 | WESAD、`numpy`、`scipy`、`scikit-learn` | `training_dataset/wesad/` 体积较大，不提交。只有重新训练压力模型时才需要下载。 |
 
-> 公开复现范围是固件、PCB、模型、脱敏采集数据和技术验证结果。正式论文/答辩报告及其 TeX、PDF 源文件不在本仓库中，不作为 clone 后的复现目标。
+> 公开复现范围是固件、PCB、模型、脱敏采集数据和技术验证结果；正式论文/答辩材料不在本仓库中，不作为 clone 后的复现目标。
 
 本仓库是原生 CMake 工程，推荐在 VS Code 中安装 STM32 VS Code/CMake 相关扩展后直接打开 clone 目录，选择 `Debug` preset 构建。仓库不包含 Keil 的 `.uvprojx` / `.uvproj` 工程文件，因此 Keil 不能仅通过“打开下载文件夹”直接编译；如需使用 Keil，必须自行新建并维护 MDK 工程，不是本项目的推荐复现路线。
 
@@ -209,23 +199,12 @@ OpenOCD 只用于通过 DAPLink/CMSIS-DAP 烧录和调试，不参与前面的�
 | --- | --- | --- |
 | `build/` | CMake 构建产物 | 运行 `cmake --preset Debug` 和 `cmake --build --preset Debug`。 |
 | `tools/xpack-openocd-0.12.0-7/` | 外部调试工具，平台相关且体积较大 | 下载 xPack OpenOCD，放到该路径，或改用本机 OpenOCD 路径。 |
-| `output/` | 本地生成的演示/报告输出 | 不在 GitHub 展示；正式论文/答辩报告也不属于公开复现范围。 |
+| `output/` | 本地生成的演示和临时输出 | 不在 GitHub 展示。 |
 | `training_dataset/wesad/` | WESAD 约 2.5 GB | 运行 `python scripts/download_stress_training_data.py`，只在重新训练压力模型时需要。 |
 | `training_dataset/derived/` | 训练派生窗口，可重新生成 | 运行对应训练脚本重新生成。 |
 | `training_dataset/reports/` 下的历史候选报告 | 中间实验产物较多 | 当前只保留 `*_current` 定稿报告；需要新实验时用脚本重新生成候选目录。 |
 
-如果 `training_dataset/physionet/` 缺失或需要刷新公开 AF 数据，可运行：
-
-```powershell
-python scripts/download_af_training_data.py --datasets afdb ltafdb nsr2db mitdb nsrdb
-```
-
-如果需要重新训练压力模型，先准备 Python 依赖和 WESAD：
-
-```powershell
-python -m pip install numpy scipy scikit-learn
-python scripts/download_stress_training_data.py
-```
+AF 数据刷新、WESAD 下载和模型重训仅用于高级实验；所需依赖、数据边界和命令见 `training_dataset/公开训练集说明.md` 与 `scripts/脚本使用说明.md`。
 
 ## 数据和算法说明
 

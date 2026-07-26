@@ -211,7 +211,7 @@ AF live 显示策略：高风险或未出值阶段每 10s 尝试更新；当前�
 | `testing dataset/` | 本地 MAX30102 采样数据、HR/SpO2/OLED/AF/Stress 回放测试数据。没有真实 AF 患者 PPG。 |
 | `Reports/` | 进度归档、AF/压力情绪功能详细总结和补充汇报文档。 |
 | `scripts/` | Python 辅助脚本目录，包含串口采集、数据下载、模型训练、验证回放和文档生成脚本；先读 `scripts/脚本使用说明.md`。 |
-| `tools/` | 外部工具占位说明；OpenOCD 和 TeX 工具本体不随 Git 提交。 |
+| `tools/` | 本地 OpenOCD 等烧录/调试工具的说明；工具本体不随 Git 提交。 |
 | `build/Debug/` | CMake 本地构建产物目录，不随 Git 提交；clone 后需重新构建生成 `STM32_F411_Test.elf`。 |
 | `README.md` | 面向人类读者的项目总览。 |
 | `AI助手接手？先读我.md` | 本文，下一位 AI 助手的唯一入口。 |
@@ -347,7 +347,7 @@ cmake --build --preset Debug
 & 'tools\xpack-openocd-0.12.0-7\bin\openocd.exe' -s 'tools\xpack-openocd-0.12.0-7\openocd\scripts' -f interface\cmsis-dap.cfg -f target\stm32f4x.cfg -c 'adapter speed 1000; program build/Debug/STM32_F411_Test.elf verify reset exit'
 ```
 
-`tools/xpack-openocd-0.12.0-7/` 是本地下载工具目录，不随 Git 提交。clone 后先按 `tools/README.md` 准备 OpenOCD，或把命令路径改成本机 OpenOCD。
+`tools/xpack-openocd-0.12.0-7/` 是本地下载工具目录，不随 Git 提交。clone 后先按 `tools/外部工具说明.md` 准备 OpenOCD，或把命令路径改成本机 OpenOCD。
 
 重新训练 AF 模型：
 
