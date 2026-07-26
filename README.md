@@ -163,6 +163,8 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 
 > 公开复现范围是固件、PCB、模型、脱敏采集数据和技术验证结果。正式论文/答辩报告及其 TeX、PDF 源文件不在本仓库中，不作为 clone 后的复现目标。
 
+本仓库是原生 CMake 工程，推荐在 VS Code 中安装 STM32 VS Code/CMake 相关扩展后直接打开 clone 目录，选择 `Debug` preset 构建。仓库不包含 Keil 的 `.uvprojx` / `.uvproj` 工程文件，因此 Keil 不能仅通过“打开下载文件夹”直接编译；如需使用 Keil，必须自行新建并维护 MDK 工程，不是本项目的推荐复现路线。
+
 更详细的数据集和脚本说明分别见 `training_dataset/公开训练集说明.md`、`testing dataset/本地采集数据集说明.md` 和 `scripts/脚本使用说明.md`。
 
 ## 复现流程建议
@@ -187,7 +189,7 @@ cmake --build --preset Debug
 
 如果使用 STM32CubeMX/STM32CubeIDE 插件自带 CMake，也可以把 `cmake` 替换为 `%LOCALAPPDATA%\stm32cube\bundles\cmake\4.3.1+st.1\bin\cmake.exe`。
 
-OpenOCD 烧录命令可参考：
+OpenOCD 只用于通过 DAPLink/CMSIS-DAP 烧录和调试，不参与前面的编译过程。若使用 ST-Link，也可以改用本机的 STM32CubeProgrammer、STM32CubeIDE 或 Keil 下载功能。OpenOCD 烧录命令可参考：
 
 ```powershell
 & 'tools\xpack-openocd-0.12.0-7\bin\openocd.exe' -s 'tools\xpack-openocd-0.12.0-7\openocd\scripts' -f interface\cmsis-dap.cfg -f target\stm32f4x.cfg -c 'adapter speed 1000; program build/Debug/STM32_F411_Test.elf verify reset exit'
