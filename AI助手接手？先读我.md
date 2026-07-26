@@ -4,6 +4,13 @@
 
 这是给下一位 AI 助手接手项目的唯一入口文档。人类第一次通览项目可先读 `README.md`；无论使用什么 AI 助手接手本项目，都从本文开始，再按本文列出的顺序打开进度、房颤风险功能详细总结、压力情绪功能详细总结和数据集说明。若旧段落与 `2026-06-29 固件参数一致性同步`、`2026-06-24 数据目录中文整理` 或 `2026-06-24 Python 脚本目录整理` 冲突，以本文、当前 `Core/Src/main.c`、当前 Python 脚本、正式模型和三个 `full_*_20260629_current` 报告为准。
 
+## 克隆后的最短路径
+
+1. 先读 `README.md` 了解硬件、构建和公开边界；再从本文继续，不要递归读取整个 `testing dataset/` 或全部报告 CSV。
+2. 按下面“先读顺序”阅读说明，再查看 `Core/Src/main.c`、正式模型和与任务有关的报告摘要。
+3. 在不修改固件、模型和报告的前提下，可运行 `python scripts/check_firmware_consistency.py` 核对当前提交快照；编译/烧录与串口操作按 README 执行。
+4. 只有明确开展新实验时才使用训练命令，并把结果写入带日期的 candidate 目录，不能覆盖正式模型或 `*_current` 报告。
+
 ## 先读顺序
 
 1. `AI助手接手？先读我.md`：当前项目地图、行动边界和后续阅读路线。
@@ -61,7 +68,7 @@ testing dataset/00_串口烟测与原始数据检查/根目录诊断CSV归档/
 
 ## 2026-06-29 固件参数一致性同步
 
-当前 `Core/Src/main.c` 和 `build/Debug/STM32_F411_Test.elf` 是运行行为的权威基线。2026-06-29 已按该基线重新训练/导出 Stress 模型并重跑 AF、Stress 报告：AF 使用 30s 窗口、20 个 PPI、10s/30s 刷新和 25 bpm 心率跳变门限；Stress 使用 40s 窗口、28 个 PPI、10s/30s 刷新和 HR>120 隐藏门限。`training_dataset/models/`、三个 `full_*_20260629_current/` 报告和验证脚本默认参数已经同步。旧的 2026-06-17 报告结果仅存在于 Git 历史，不再作为当前结论引用。
+对于从 Git 克隆的使用者，`Core/Src/main.c`、`training_dataset/models/`、三个 `full_*_20260629_current/` 报告和当前验证脚本共同构成可检查的提交内基线；`build/Debug/STM32_F411_Test.elf` 是由这些输入重新构建得到的本地产物，不随 Git 提交。2026-06-29 已按该基线重新训练/导出 Stress 模型并重跑 AF、Stress 报告：AF 使用 30s 窗口、20 个 PPI、10s/30s 刷新和 25 bpm 心率跳变门限；Stress 使用 40s 窗口、28 个 PPI、10s/30s 刷新和 HR>120 隐藏门限。旧的 2026-06-17 报告结果仅存在于 Git 历史，不再作为当前结论引用。
 
 验收定稿范围：
 
@@ -88,8 +95,8 @@ HR/SpO2 -> AF live -> STRESS -> AF test -> HR/SpO2
 
 | 产物 | 路径 |
 | --- | --- |
-| 最终固件源码 | `Core/Src/main.c` |
-| 最终构建产物 | `build/Debug/STM32_F411_Test.elf`，本地生成，不随 Git 提交。 |
+| 最终固件源码（提交内基准） | `Core/Src/main.c` |
+| 最终构建产物（本地生成） | `build/Debug/STM32_F411_Test.elf`，不随 Git 提交；clone 后按 README 重新构建。 |
 | AF 模型 | `training_dataset/models/af_nb_model.json`、`af_nb_model.h` |
 | Stress 模型 | `training_dataset/models/stress_hrv_model.json`、`stress_hrv_model.h` |
 | AF 最终验证 | `training_dataset/reports/full_af_validation_20260629_current/` |
@@ -97,13 +104,15 @@ HR/SpO2 -> AF live -> STRESS -> AF test -> HR/SpO2
 | Stress 训练验证 | `training_dataset/reports/full_stress_train_validation_20260629_current/` |
 | 最终关键本地采集 | `testing dataset/112_subject_A_pressure_baseline_light_stable_20260617_140429/`、`testing dataset/113_subject_A_pressure_baseline_light_stable_20260617_141049/`、`testing dataset/114_subject_B_af_high_review_20260617_144713/` |
 
-验收前封版规则：
+验收基线保护规则（默认复现不改动）：
 
 - 不再调整 HR/SpO2、PPI 过滤、AF、Stress、OLED 波形或显示参数。
 - 不再重新训练 AF/Stress 模型，不覆盖 `training_dataset/models/`。
 - 不再为了“看起来更好”修改风险概率或压力指数。
-- 只允许做编译、烧录、接线检查、COM7 恢复和验收演示操作。
+- 只允许做编译、烧录、接线检查、USB CDC 串口恢复和验收演示操作；`COM7` 仅是原开发机示例端口。
 - 如果现场出现硬件连接问题，先检查 Type-C、DAPLink、I2C 和串口，不要临时改算法。
+
+如明确开展新实验，可使用后文训练/验证命令生成 candidate 目录；不得覆盖 `training_dataset/models/` 或三个 `*_current` 报告，除非任务明确要求更新正式基线。
 
 验收口径：
 

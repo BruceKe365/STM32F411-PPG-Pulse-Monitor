@@ -120,7 +120,7 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 
 串口会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使用 Python 脚本采集、回放和验证。
 
-当前算法参数以 `Core/Src/main.c` 和对应 ELF 为权威基线。2026-06-29 已据此完成模型与报告一致性同步：AF 使用 30 秒窗口、至少 20 个 PPI、10 秒/30 秒快慢刷新、18 bpm PPI-HR 容差和 20% 风险上跳保持；Stress 使用 40 秒窗口、至少 28 个 PPI、10 秒/30 秒刷新和 HR>120 隐藏门限；HR 显示使用 25 bpm 跳变门限和 10s 超时接受策略。正式 Stress JSON/头文件与 MCU 内嵌模型逐项一致，当前报告统一位于 `training_dataset/reports/full_*_20260629_current/`。
+对于从 Git 克隆的使用者，`Core/Src/main.c`、正式模型和 `training_dataset/reports/full_*_20260629_current/` 报告共同构成可检查的提交内基线；ELF 是由这些输入重新构建得到的本地产物，不随 Git 提交。2026-06-29 已据此完成模型与报告一致性同步：AF 使用 30 秒窗口、至少 20 个 PPI、10 秒/30 秒快慢刷新、18 bpm PPI-HR 容差和 20% 风险上跳保持；Stress 使用 40 秒窗口、至少 28 个 PPI、10 秒/30 秒刷新和 HR>120 隐藏门限；HR 显示使用 25 bpm 跳变门限和 10s 超时接受策略。正式 Stress JSON/头文件与 MCU 内嵌模型逐项一致，当前报告统一位于 `training_dataset/reports/full_*_20260629_current/`。
 
 ## 项目目录
 
@@ -160,7 +160,8 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 | 串口采集和实时诊断 | Python 3、`pyserial` | 使用 `python -m pip install pyserial` 安装后运行 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py`。 |
 | 重新训练 AF 模型或刷新公开 AF 数据 | 可选下载 PhysioNet AF/NSR 注释文件 | 当前提交已保留 `training_dataset/physionet/` 最小注释文件；缺失或想刷新时运行 `scripts/download_af_training_data.py`。 |
 | 重新训练 Stress 模型 | WESAD、`numpy`、`scipy`、`scikit-learn` | `training_dataset/wesad/` 体积较大，不提交。只有重新训练压力模型时才需要下载。 |
-| 重新生成 PDF 报告 | TeX/Tectonic 工具链 | `output/` 是本地输出目录，不在 GitHub 展示；需要 PDF 时在本机重新生成。 |
+
+> 公开复现范围是固件、PCB、模型、脱敏采集数据和技术验证结果。正式论文/答辩报告及其 TeX、PDF 源文件不在本仓库中，不作为 clone 后的复现目标。
 
 更详细的数据集和脚本说明分别见 `training_dataset/公开训练集说明.md`、`testing dataset/本地采集数据集说明.md` 和 `scripts/脚本使用说明.md`。
 
@@ -173,12 +174,16 @@ PPG_PROC_STREAM_USB_ENABLE = 1
 5. 烧录后连接 Type-C，打开 USB CDC 虚拟串口，使用 `scripts/read_serial_diagnostics.py` 或 `scripts/read_max30102_raw.py` 检查数据输出。
 6. 若 Windows 下 COM 口枚举但打不开，优先重新插拔主板 Type-C，再检查供电、I2C 接线和 DAPLink 连接。
 
+`COM7` 只是原开发机的示例端口。请以本机设备管理器显示的端口为准；需要指定时，在串口脚本后附加 `--port COMx`，并把 `COMx` 替换为实际端口号。
+
 构建命令示例：
 
 ```powershell
 cmake --preset Debug
 cmake --build --preset Debug
 ```
+
+如果配置阶段提示找不到 `arm-none-eabi-gcc`，请将 ARM GNU Toolchain 的 `bin` 目录加入 `PATH`，重新打开终端后再执行上述命令。
 
 如果使用 STM32CubeMX/STM32CubeIDE 插件自带 CMake，也可以把 `cmake` 替换为 `%LOCALAPPDATA%\stm32cube\bundles\cmake\4.3.1+st.1\bin\cmake.exe`。
 
@@ -202,8 +207,7 @@ OpenOCD 烧录命令可参考：
 | --- | --- | --- |
 | `build/` | CMake 构建产物 | 运行 `cmake --preset Debug` 和 `cmake --build --preset Debug`。 |
 | `tools/xpack-openocd-0.12.0-7/` | 外部调试工具，平台相关且体积较大 | 下载 xPack OpenOCD，放到该路径，或改用本机 OpenOCD 路径。 |
-| `tools/tex/` | LaTeX/PDF 工具链 | 只有重新生成报告 PDF 时需要，也可使用系统 PATH 中已有的 TeX/Tectonic。 |
-| `output/` | 本地报告/PDF 输出目录 | 不在 GitHub 展示；需要时在本机生成。 |
+| `output/` | 本地生成的演示/报告输出 | 不在 GitHub 展示；正式论文/答辩报告也不属于公开复现范围。 |
 | `training_dataset/wesad/` | WESAD 约 2.5 GB | 运行 `python scripts/download_stress_training_data.py`，只在重新训练压力模型时需要。 |
 | `training_dataset/derived/` | 训练派生窗口，可重新生成 | 运行对应训练脚本重新生成。 |
 | `training_dataset/reports/` 下的历史候选报告 | 中间实验产物较多 | 当前只保留 `*_current` 定稿报告；需要新实验时用脚本重新生成候选目录。 |
