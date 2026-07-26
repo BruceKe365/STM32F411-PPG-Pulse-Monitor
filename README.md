@@ -37,10 +37,12 @@
 
 ## 硬件平台
 
-当前固件面向 STM32F411CEUx/STM32F411CEU6 平台，主板和供电板可结合根目录下的 PCB 工程文件，使用嘉立创 EDA 专业版复现：
+当前固件面向 STM32F411CEUx/STM32F411CEU6 平台，主板和供电板可结合根目录下的 PCB 工程文件复现；需要查看或修改设计时，使用嘉立创 EDA 专业版打开：
 
 - `PCB板文件(epro2文件)/脉搏测试仪主板（不带电源）.epro2`
 - `PCB板文件(epro2文件)/锂电池供电电源板 30mm×40mm.epro2`
+
+对应的 Gerber 制板包位于 `PCB板文件(epro2文件)/Gerber/`，可直接提交给板厂制板；Gerber 与上述两份工程一一对应。
 
 主要硬件如下：
 
@@ -131,7 +133,7 @@ USB CDC 会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使�
 | `scripts/` | Python 辅助脚本目录，包含串口采集、数据下载、模型训练、验证回放和文档生成脚本；详见 `scripts/脚本使用说明.md`。 |
 | `testing dataset/` | 本地 MAX30102 采集数据、回放数据和诊断 CSV。 |
 | `training_dataset/` | 公开训练数据、AF/Stress 模型参数、验证报告和数据集说明。 |
-| `PCB板文件(epro2文件)/` | 主板和锂电池供电板 PCB 工程文件。 |
+| `PCB板文件(epro2文件)/` | 主板和锂电池供电板的 `.epro2` 工程，以及可直接制板的 `Gerber/` 压缩包。 |
 | `tools/` | OpenOCD 等本地烧录/调试工具的说明，按 `tools/外部工具说明.md` 准备。 |
 | `output/` | 本地生成的演示和临时输出，不随 GitHub 提交。 |
 | `build/Debug/` | CMake Debug 本地构建产物目录，不随 Git 提交；clone 后需要重新构建生成 `STM32_F411_Test.elf`。 |
@@ -159,7 +161,7 @@ USB CDC 会输出 MAX30102 原始采样和 `PPG_PROC` 处理结果，便于使�
 
 ## 复现流程建议
 
-1. 打开 `PCB板文件(epro2文件)/` 中的两份 PCB 工程，结合上面的引脚表完成主板、供电板和外设连接。
+1. 使用 `PCB板文件(epro2文件)/Gerber/` 中与目标板对应的压缩包制板；如需查看或修改设计，再用嘉立创 EDA 专业版打开同目录下的 `.epro2` 工程，结合上面的引脚表完成主板、供电板和外设连接。
 2. 用 STM32CubeMX 打开 `STM32_F411_Test.ioc`，核对 MCU、时钟、I2C、USB CDC、PB5 EXTI 和 SWD 配置。
 3. 安装 ARM GNU Toolchain、CMake/Ninja，并用 CMake 构建工程生成 `build/Debug/STM32_F411_Test.elf`。
 4. 使用 DAPLink/CMSIS-DAP 和 OpenOCD 通过 SWD 烧录。
